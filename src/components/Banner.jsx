@@ -22,7 +22,7 @@ function Banner() {
             />
             
         </div>
-        <button className='bg-white text-black rounded p-3 m-2'><a href='https://drive.google.com/file/d/1eDbzLIx90m2Oo55DHiWCKLBw2v1GSznF/view?usp=sharing'> Download My Resume</a></button>
+        <button className='bg-white text-black rounded-xl p-3 m-2'><a href='https://drive.google.com/file/d/1eDbzLIx90m2Oo55DHiWCKLBw2v1GSznF/view?usp=sharing'> Download My Resume</a></button>
       </div>
     </div>
   )

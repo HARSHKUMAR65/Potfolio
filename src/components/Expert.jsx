@@ -1,28 +1,31 @@
-import React from 'react'
-import Img from '../assets/image/Harsh.JPG'
+
 function Expert() {
   return (
-    <div className="max-w-[1240px] my-10 mx-auto md:grid grid-cols-2 py-2 shadow-2xl p-5 md:backdrop-blur-lg">
-
-      {/* Image */}
-      <div className="col-span-1 flex justify-center items-center  rounded-full">
-        <img src={Img} alt="Error" className="max-w-full h-80" />
+    <div name='about' className='w-full h-[600px] md:backdrop-blur-lg text-gray-300' >
+      <div className='flex flex-col justify-center items-center w-full h-full' >
+        <div className='max-w-[1000px] w-full grid grid-cols-2 gap-8' id="about">
+          <div className='sm:text-right pb-8 pl-4' >
+            <p className='text-4xl font-bold inline border-b-4 border-pink-600'>
+              About Me
+            </p>
+          </div>
+          <div></div>
+          </div>
+          <div className='max-w-[1000px] w-full grid sm:grid-cols-2 gap-8 px-4'>
+            <div className='sm:text-right text-4xl font-bold'>
+              <p>Hi. I'm Harsh Kumar, nice to meet you. Please take a look around.</p>
+            </div>
+            
+            <div>
+              <p>I am passionate about building excellent software that improves
+              the lives of those around me. I specialize in creating software
+              for clients ranging from individuals and small-businesses all the
+              way to large enterprise corporations. What would you do if you had
+              a software expert available at your fingertips?</p>  
+            </div>
+          </div>
       </div>
-
-
-
-      {/* Content */}
-      <div className="col-span-1 flex flex-col justify-center items-center py-4 px-6">
-        <h1 className="text-blue-600 font-bold my-2 text-2xl">Learn React with me</h1>
-        <p className="my-2 text-lg text-pretty text-center text-white">
-          In our personal and professional lives, we are constantly hit with one adversity after the other, most of which we have no control over. But the four things we have total control over are how we react, how we adapt, how we breathe, and how we take action.
-        </p>
-        {/* <h2 className="text-sm text-red-800">By: Ashish Yadav</h2> */}
-        {/* <button className="bg-black text-white rounded p-3 w-[30%] my-2">Download Resume</button> */}
-      </div>
-
     </div>
-
   )
 }
 

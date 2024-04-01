@@ -24,10 +24,12 @@ function Header() {
             )}
           </div>
 
-          <ul className='hidden md:flex gap-6 text-lg text-white'>
-            <li className='hover:text-gray-800'>Home</li>
-            <li className='hover:text-gray-800'>About</li>
-            <li className='hover:text-gray-800'>Contact Us</li>
+          <ul className='hidden md:flex gap-6 text-lg text-white '>
+            <li className=' text-2xl hover:text-gray-400'>Home</li>
+            <li className='text-2xl hover:text-gray-400'>About</li>
+            <li className='text-2xl hover:text-gray-400'>Experience</li>
+            <li className='text-2xl hover:text-gray-400'>Skills</li>
+            <li className='text-2xl hover:text-gray-400'>Projects</li>
           </ul>
         </div>
       </div>
