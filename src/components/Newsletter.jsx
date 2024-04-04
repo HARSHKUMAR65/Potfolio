@@ -1,7 +1,7 @@
 const Newsletter = () => {
   return (
     <div className=" py-12">
-      <h1 className="text-4xl font-bold text-center mb-12">Skills</h1>
+      <h1 className="text-4xl text-white text-center mb-12">Skills</h1>
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="md:backdrop-blur-lg shadow-lg rounded-lg p-8 transform hover:scale-105 transition duration-300 ">
           <h2 className="text-white text-2xl font-bold text-center mb-6">Language</h2>
