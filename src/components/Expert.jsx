@@ -1,32 +1,46 @@
+import { FaLaptopCode, FaMobileAlt } from 'react-icons/fa';
 
 function Expert() {
   return (
-    <div name='about' className='w-full h-[600px] md:backdrop-blur-lg text-gray-300' >
-      <div className='flex flex-col justify-center items-center w-full h-full' >
-        <div className='max-w-[1000px] w-full grid grid-cols-2 gap-8' id="about">
-          <div className='sm:text-right pb-8 pl-4' >
-            <p className='text-4xl font-bold inline border-b-4 border-pink-600'>
-              About Me
+    <div name="about" className="w-full py-20  text-gray-300">
+      <div className="max-w-[1000px] mx-auto px-6 flex flex-col items-center text-center">
+
+        <h2 className="text-4xl font-bold border-b-4 border-pink-600 inline-block mb-10">
+          About Me
+        </h2>
+
+        <div className="grid md:grid-cols-2 gap-12 text-left">
+
+          {/* Web Development */}
+          <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-lg hover:scale-105 duration-300">
+            <div className="flex items-center gap-4 mb-4 text-white">
+              <FaLaptopCode size={30} />
+              <h3 className="text-2xl font-semibold">Web Developer</h3>
+            </div>
+            <p className="text-gray-300 text-md leading-relaxed">
+              I'm Harsh Kumar — a full-stack developer focused on crafting high-performing, pixel-perfect websites. I work extensively with modern technologies like React, Node.js, and MongoDB to deliver scalable, production-ready solutions. Whether it's a landing page or a large-scale app, I bring both design sense and engineering precision.
             </p>
           </div>
-          <div></div>
-          </div>
-          <div className='max-w-[1000px] w-full grid sm:grid-cols-2 gap-8 px-4'>
-            <div className='sm:text-right text-4xl font-bold'>
-              <p>Hi. I'm Harsh Kumar, nice to meet you. Please take a look around.</p>
+
+          {/* Mobile App Development */}
+          <div className="bg-white/10 backdrop-blur-md p-6 rounded-lg shadow-lg hover:scale-105 duration-300">
+            <div className="flex items-center gap-4 mb-4 text-white">
+              <FaMobileAlt size={30} />
+              <h3 className="text-2xl font-semibold">Mobile App Developer</h3>
             </div>
-            
-            <div>
-              <p>I am passionate about building excellent software that improves
-              the lives of those around me. I specialize in creating software
-              for clients ranging from individuals and small-businesses all the
-              way to large enterprise corporations. What would you do if you had
-              a software expert available at your fingertips?</p>  
-            </div>
+            <p className="text-gray-300 text-md leading-relaxed">
+              I also build smooth, cross-platform mobile applications using React Native. From idea to App Store, I help businesses launch intuitive and responsive apps that work seamlessly on both Android and iOS. My focus is always on user experience, performance, and maintainability.
+            </p>
           </div>
+        </div>
+
+        {/* Footer Description */}
+        <div className="mt-16 max-w-3xl text-lg text-gray-400 leading-relaxed">
+          I’m passionate about learning, adapting, and solving problems with technology. Whether you’re a startup or an enterprise, I bring a creative mindset, collaborative energy, and deep technical skill to every project. Let’s connect and build something amazing together.
+        </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Expert
+export default Expert;

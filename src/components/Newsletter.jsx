@@ -1,41 +1,76 @@
+const skills = [
+  {
+    title: "Frontend Development",
+    items: [
+      "React.js, React Native, Next.js, Redux, Angular",
+      "JavaScript (ES6+), TypeScript, HTML5, CSS3",
+      "Tailwind CSS, Material UI (MUI), Sass",
+      "Building complex UI components and optimizing performance"
+    ]
+  },
+  {
+    title: "State Management & APIs",
+    items: [
+      "Redux, Context API",
+      "RESTful APIs integration using Axios and Fetch API"
+    ]
+  },
+  {
+    title: "Testing & Debugging",
+    items: [
+      "Jest, React Testing Library",
+      "Debugging with React DevTools, Console, Sources tab, Lighthouse"
+    ]
+  },
+  {
+    title: "Build, Deployment & Version Control",
+    items: [
+      "Webpack, Babel, Vite, NPM, Yarn",
+      "Git, GitHub, GitLab, Version Control Systems",
+      "Deployment on Netlify, Vercel, GitHub Pages, VPS, C-Panel"
+    ]
+  },
+  {
+    title: "Backend & Database",
+    items: [
+      "Node.js (basic/backend scripting)",
+      "Databases: SQL, MongoDB, PostgreSQL"
+    ]
+  },
+  {
+    title: "Other Skills",
+    items: [
+      "Data Structures and CRUD operations",
+      "3rd-party dependency integration and debugging",
+      "UI/UX best practices and performance optimization"
+    ]
+  }
+];
+
+
 const Newsletter = () => {
   return (
-    <div className=" py-12">
-      <h1 className="text-4xl text-white text-center mb-12">Skills</h1>
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div className="md:backdrop-blur-lg shadow-lg rounded-lg p-8 transform hover:scale-105 transition duration-300 ">
-          <h2 className="text-white text-2xl font-bold text-center mb-6">Language</h2>
-          <div className="flex flex-wrap justify-center">
-            <span className="inline-block bg-gradient-to-r from-purple-400 to-pink-500 rounded-full px-4 py-2 text-sm font-semibold text-white mr-4 mb-4">HTML</span>
-            <span className="inline-block bg-gradient-to-r from-blue-400 to-cyan-500 rounded-full px-4 py-2 text-sm font-semibold text-white mr-4 mb-4">CSS</span>
-            <span className="inline-block bg-gradient-to-r from-green-400 to-blue-500 rounded-full px-4 py-2 text-sm font-semibold text-white mr-4 mb-4">JavaScript</span>
-            <span className="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full px-4 py-2 text-sm font-semibold text-white mb-4">Python</span>
+    <div className="py-12 px-4">
+            <div className="text-center">
+                <h2 className="text-4xl font-bold border-b-4 border-pink-600 inline-block mb-10 text-white">
+                Skills & Expertise
+            </h2>
+            </div>
+
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+        {skills.map((section, index) => (
+          <div
+            key={index}
+            className="bg-white/10 backdrop-blur-md shadow-md rounded-xl p-6 transform hover:scale-105 transition duration-300"
+          >
+            <h2 className="text-xl text-white font-semibold mb-4 text-center">{section.title}</h2>
+            <ul className="list-disc list-inside space-y-2 text-sm text-gray-300">
+              {section.items.map((item, idx) => (
+                <li key={idx}>{item}</li>
+              ))}
+            </ul>
           </div>
-        </div>
-        <div className="md:backdrop-blur-lg shadow-lg rounded-lg p-8 transform hover:scale-105 transition duration-300 ">
-          <h2 className="text-white text-2xl font-bold text-center mb-6">Library / Framework</h2>
-          <div className="flex flex-wrap justify-center">
-            <span className="inline-block bg-gradient-to-r from-pink-400 to-rose-500 rounded-full px-4 py-2 text-sm font-semibold text-white mr-4 mb-4">Bootstrap</span>
-            <span className="inline-block bg-gradient-to-r from-emerald-400 to-cyan-500 rounded-full px-4 py-2 text-sm font-semibold text-white mr-4 mb-4">Tailwind</span>
-            <span className="inline-block bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full px-4 py-2 text-sm font-semibold text-white mr-4 mb-4">React</span>
-            <span className="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full px-4 py-2 text-sm font-semibold text-white mr-4 mb-4">Flask</span>
-            <span className="inline-block bg-gradient-to-r from-green-400 to-lime-500 rounded-full px-4 py-2 text-sm font-semibold text-white mr-4 mb-4">Node Js</span>
-            <span className="inline-block bg-gradient-to-r from-blue-400 to-purple-500 rounded-full px-4 py-2 text-sm font-semibold text-white mr-4 mb-4">Selenium</span>
-            <span className="inline-block bg-gradient-to-r from-indigo-400 to-purple-500 rounded-full px-4 py-2 text-sm font-semibold text-white mb-4">Puppeteer</span>
-          </div>
-        </div>
-        <div className="md:backdrop-blur-lg shadow-lg rounded-lg p-8 transform hover:scale-105 transition duration-300 ">
-          <h2 className="text-white text-2xl font-bold text-center mb-6">Tools</h2>
-          <div className="flex flex-wrap justify-center">
-            <span className="inline-block bg-gradient-to-r from-pink-400 to-red-500 rounded-full px-4 py-2 text-sm font-semibold text-white mr-4 mb-4">Debugging Tools</span>
-            <span className="inline-block bg-gradient-to-r from-gray-400 to-gray-600 rounded-full px-4 py-2 text-sm font-semibold text-white mr-4 mb-4">Github</span>
-            <span className="inline-block bg-gradient-to-r from-purple-400 to-indigo-500 rounded-full px-4 py-2 text-sm font-semibold text-white mr-4 mb-4">Database (SQL , MongoDB)</span>
-            <span className="inline-block bg-gradient-to-r from-green-400 to-lime-500 rounded-full px-4 py-2 text-sm font-semibold text-white mr-4 mb-4">ES5 & ES6</span>
-            <span className="inline-block bg-gradient-to-r from-yellow-400 to-amber-500 rounded-full px-4 py-2 text-sm font-semibold text-white mr-4 mb-4">Web API</span>
-            <span className="inline-block bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full px-4 py-2 text-sm font-semibold text-white mr-4 mb-4">Package Manager</span>
-            <span className="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full px-4 py-2 text-sm font-semibold text-white mr-4 mb-4">Bundlers(webpack and vite.js)</span>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );

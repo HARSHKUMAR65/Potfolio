@@ -1,10 +1,10 @@
 // import React from 'react'
 
 import Banner from "./components/Banner"
-import Cards from "./components/Cards"
+// import Cards from "./components/Cards"
 import Expert from "./components/Expert"
 import Footer from "./components/Footer"
-import Header from "./components/Header"
+// import Header from "./components/Header"
 import Newsletter from "./components/Newsletter"
 import Experience from "./components/Experience"
 
@@ -30,12 +30,12 @@ const App = () => {
         Your browser does not support the video tag.
       </video>
       <div className="relative z-10">
-        <Header />
+        {/* <Header /> */}
         <Banner />
         <Expert />
         <Experience />
         <Newsletter />
-        <Cards />
+        {/* <Cards /> */}
         <Footer />
       </div>
     </div>

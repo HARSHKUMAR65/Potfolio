@@ -1,31 +1,45 @@
-import React from 'react';
 import { ReactTyped } from 'react-typed';
 
 function Banner() {
+  const handleDownload = () => {
+    const link = document.createElement('a');
+    link.href = '/assets/Harsh_resume.pdf';
+    link.setAttribute('download', 'Harsh_resume.pdf');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
-    <div className='w-full py-[150px]'>
+    <div className='w-full py-[110px]'>
       <div className='max-w-[1240px] mx-auto text-center'>
 
         <div className='text-2xl text-white md:text-4xl font-bold md:p-[24px] p-[5px]'>
-            Hey, Coders!
+          Hello, I’m
         </div>
 
-        <h2 className='text-white font-bold md:text-[80px] text-3xl md:p-[24px] p-[15px]'>I'm Harsh</h2>
+        <h2 className='text-white font-bold md:text-[80px] text-3xl md:p-[24px] p-[15px]'>Harsh Kumar</h2>
 
         <div className='text-[15px] md:text-[50px] bg-gradient-to-r from-black to-white bg-clip-text text-transparent font-bold md:p-[24px] p-[15px]'>
-            
-            <ReactTyped
+          <ReactTyped
             className='pl-3'
-            strings={[' I am Web Developer', 'with React/Node.js']}
+            strings={[
+              'Software Engineer | 2+ Years of Experience',
+              'Building Web & Mobile Apps with React/Node.js'
+            ]}
             typeSpeed={100}
             loop
-            />
-            
+          />
         </div>
-        <button className='bg-white text-black rounded-xl p-3 m-2'><a href='https://drive.google.com/file/d/1eDbzLIx90m2Oo55DHiWCKLBw2v1GSznF/view?usp=sharing'> Download My Resume</a></button>
+
+
+        <button onClick={handleDownload} className='bg-white text-black rounded-xl p-3 m-2'>
+          Download My Resume
+        </button>
+
       </div>
     </div>
-  )
+  );
 }
 
 export default Banner;
