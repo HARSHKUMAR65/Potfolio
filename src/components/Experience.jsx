@@ -22,11 +22,14 @@ const experiences = [
             }
         ]
     },
+];
+
+const projectsAtWork = [
     {
         company: "Petometer",
         roles: [
             {
-                title: "Full Stack Developer",
+                title: "Frontend Developer",
                 duration: "March 2025 - May 2025",
                 stack: "React Native, React Query",
                 responsibilities: [
@@ -43,7 +46,7 @@ const experiences = [
         company: "Autvob",
         roles: [
             {
-                title: "Full Stack Developer",
+                title: "Frontend Developer",
                 duration: "November 2024 - February 2025",
                 stack: "Next.js, Stripe",
                 responsibilities: [
@@ -60,7 +63,7 @@ const experiences = [
         company: "Korikart",
         roles: [
             {
-                title: "Full Stack Developer",
+                title: "Frontend Developer",
                 duration: "April 2024 - October 2024",
                 stack: "React Native, Redux",
                 responsibilities: [
@@ -116,41 +119,56 @@ const experiences = [
             }
         ]
     }
-];
+]
 
 const achievements = [
     "Improved website performance by optimizing SQL queries and enhancing UI responsiveness.",
     "Designed and implemented CRM solutions to streamline sales processes.",
     "Effectively handled client interactions, ensuring seamless project execution."
 ];
+const projects = [
+    {
+        name: "Emplog",
+        stack: "MySQL, Express.js, React.js, Node.js ",
+        description: `Built a time tracking system with daily logs, admin dashboards, JWT-based auth, and role management — streamlining productivity tracking and reducing manual effort by ~30%.`,
+        link: "https://emplog.com"
+    },
+    {
+    name: "Apack Movers",
+    stack: "Next.js, Tailwind CSS",
+    description: `Developed a responsive and SEO-focused moving service website with dynamic routing and clean UI/UX using Tailwind CSS — optimized for performance, user experience, and search visibility.`,
+    link: "https://apackmovers.com"
+  }
+];
 
 const Experience = () => {
     return (
-        <div className="max-w-6xl mx-auto px-4 py-10 text-white space-y-10">
+        <div className="max-w-6xl mx-auto px-4 py-14 text-white space-y-16">
+            {/* Section Title */}
             <div className="text-center">
-                <h2 className="text-4xl font-bold border-b-4 border-pink-600 inline-block mb-10">
-                Work Experience
-            </h2>
+                <h2 className="text-4xl md:text-5xl font-bold border-b-4 border-pink-600 inline-block mb-10">
+                    Work Experience
+                </h2>
             </div>
 
-
-            <div className="space-y-8">
+            {/* Work Experience Cards */}
+            <div className="grid grid-cols-1  gap-6">
                 {experiences.map((exp, index) => (
                     <div
                         key={index}
-                        className="bg-white/10 backdrop-blur-md p-6 rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.01] transition-all"
+                        className="bg-white/10 backdrop-blur-md p-6 rounded-xl shadow-md hover:shadow-lg hover:scale-[1.02] transition-all duration-300"
                     >
-                        <h3 className="text-2xl font-bold mb-4 text-white">{exp.company}</h3>
+                        <h3 className="text-2xl font-bold text-white mb-3">{exp.company}</h3>
                         {exp.roles.map((role, i) => (
-                            <div key={i} className="mb-6">
-                                <div className="flex justify-between flex-wrap items-center mb-2">
-                                    <h4 className="text-lg font-semibold">{role.title}</h4>
+                            <div key={i}>
+                                <div className="flex justify-between items-center flex-wrap mb-2">
+                                    <h4 className="text-lg md:text-xl font-semibold text-white">{role.title}</h4>
                                     <span className="text-sm text-gray-400">{role.duration}</span>
                                 </div>
-                                <p className="text-sm text-blue-400 italic mb-2">
+                                <p className="text-sm text-pink-400 italic mb-2">
                                     Tech Stack: {role.stack}
                                 </p>
-                                <ul className="list-disc list-inside space-y-1 text-sm text-gray-300 pl-2">
+                                <ul className="list-disc list-inside space-y-1 text-md text-gray-300 pl-2 max-h-[180px] overflow-y-auto scrollbar-hide  no-scrollbar no-scrollbar::-webkit-scrollbar">
                                     {role.responsibilities.map((task, j) => (
                                         <li key={j}>{task}</li>
                                     ))}
@@ -161,13 +179,92 @@ const Experience = () => {
                 ))}
             </div>
 
-            <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 shadow-lg">
-                <h3 className="text-2xl font-bold mb-4 text-green-400">Work Achievements</h3>
-                <ul className="list-disc list-inside text-sm text-gray-300 space-y-2 pl-2">
+            {/* Projects at Work */}
+            <div className="text-center">
+                <h2 className="text-4xl md:text-5xl font-bold border-b-4 border-pink-600 inline-block mb-10">
+                    Projects
+                </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {projectsAtWork.map((exp, index) => (
+                    <div
+                        key={index}
+                        className="bg-white/10 backdrop-blur-md p-6 rounded-xl shadow-md hover:shadow-lg hover:scale-[1.02] transition-all duration-300"
+                    >
+                        <h3 className="text-2xl font-bold text-white mb-3">{exp.company}</h3>
+                        {exp.roles.map((role, i) => (
+                            <div key={i}>
+                                <div className="flex justify-between items-center flex-wrap mb-2">
+                                    <h4 className="text-lg md:text-xl font-semibold text-white">{role.title}</h4>
+                                    <span className="text-sm text-gray-400">{role.duration}</span>
+                                </div>
+                                <p className="text-sm text-pink-400 italic mb-2">
+                                    Tech Stack: {role.stack}
+                                </p>
+                                <ul className="list-disc list-inside space-y-1 text-md text-gray-300 pl-2 max-h-[180px] overflow-y-auto scrollbar-hide no-scrollbar no-scrollbar::-webkit-scrollbar">
+                                    {role.responsibilities.map((task, j) => (
+                                        <li key={j}>{task}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
+                    </div>
+                ))}
+            </div>
+
+            {/* Work Achievements */}
+            <div>
+                <h3 className="text-4xl md:text-5xl font-bold text-center border-b-4 border-green-500 inline-block mb-10">
+                    Work Achievements
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {achievements.map((ach, i) => (
-                        <li key={i}>{ach}</li>
+                        <div
+                            key={i}
+                            className="bg-white/10 backdrop-blur-md p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
+                        >
+                            <p className="text-base text-gray-300">{ach}</p>
+                        </div>
                     ))}
-                </ul>
+                </div>
+            </div>
+
+            {/* Personal Projects */}
+            <div>
+                <h3 className="text-4xl md:text-5xl font-bold text-center border-b-4 border-pink-600 inline-block mb-10">
+                    Personal Projects
+                </h3>
+
+                <div className="grid grid-cols-1 md:grid-cols-2  gap-6">
+                    {projects.map((project, index) => (
+                        <div
+                            key={index}
+                            className="bg-white/10 backdrop-blur-md p-6 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 flex flex-col justify-between"
+                        >
+                            <div>
+                                <h4 className="text-xl font-semibold text-white mb-1">
+                                    {project.name}
+                                </h4>
+                                <p className="text-sm text-pink-400 font-medium mb-2">
+                                    {project.stack}
+                                </p>
+                                <p className="text-base text-gray-300 mb-4">
+                                    {project.description}
+                                </p>
+                            </div>
+                            <div>
+                                <a
+                                    href={project.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-pink-400 text-sm font-semibold hover:underline"
+                                >
+                                    View Project ↗
+                                </a>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     );
