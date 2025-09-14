@@ -3,14 +3,14 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { SiHashnode } from 'react-icons/si';
 
 function Banner() {
-  const handleDownload = () => {
-    const link = document.createElement('a');
-    link.href = '/assets/Harsh_resume.pdf';
-    link.setAttribute('download', 'Harsh_resume.pdf');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  // const handleDownload = () => {
+  //   const link = document.createElement('a');
+  //   link.href = '/assets/Harsh_resume.pdf';
+  //   link.setAttribute('download', 'Harsh_resume.pdf');
+  //   document.body.appendChild(link);
+  //   link.click();
+  //   document.body.removeChild(link);
+  // };
 
   return (
     <div className="w-full py-[110px]">
@@ -54,12 +54,12 @@ function Banner() {
 
 
         {/* Resume Button */}
-        <button
+        {/* <button
           onClick={handleDownload}
           className="bg-white text-black font-semibold rounded-xl px-6 py-3 mt-6 hover:bg-gray-200 transition"
         >
           📄 Download My Resume
-        </button>
+        </button> */}
 
         {/* Social Icons */}
         <div className="flex justify-center items-center gap-6 mt-10">
