@@ -3,6 +3,7 @@ import Expert from "./components/Expert"
 import Newsletter from "./components/Newsletter"
 import Experience from "./components/Experience"
 import { FaWhatsapp, FaPhoneAlt, FaEnvelope } from "react-icons/fa"
+import Contact from "./components/Contact"
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Expert />
         <Experience />
         <Newsletter />
+        <Contact />
       </div>
 
       {/* Floating Contact Buttons */}
