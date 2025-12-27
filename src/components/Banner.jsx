@@ -73,7 +73,7 @@ function Banner() {
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20 pt-10 border-t border-slate-200">
           <div className="flex flex-col items-center">
-            <span className="text-3xl font-bold text-slate-900">2+</span>
+            <span className="text-3xl font-bold text-slate-900">3+</span>
             <span className="text-sm text-slate-500 mt-1">Years Experience</span>
           </div>
           <div className="flex flex-col items-center">
