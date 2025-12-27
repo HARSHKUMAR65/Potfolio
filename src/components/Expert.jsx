@@ -1,125 +1,141 @@
-import { FaLaptopCode, FaMobileAlt, FaHandshake, FaServer, FaDatabase, FaBrain } from 'react-icons/fa';
-import { SiTensorflow } from 'react-icons/si';
+import { FaLaptopCode, FaMobileAlt, FaHandshake, FaServer, FaDatabase, FaBrain, FaDocker, FaAws } from 'react-icons/fa';
+import { SiTensorflow, SiKubernetes, SiGraphql } from 'react-icons/si';
 
 function Expert() {
   return (
     <div
       name="about"
-      className="w-full py-20 px-4 text-gray-300"
+      id="about"
+      className="w-full py-24 px-4 relative"
     >
-      <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
+      <div className="max-w-6xl mx-auto flex flex-col items-center">
         {/* Section Header */}
-        <h2 className="text-4xl sm:text-5xl font-bold border-b-4 border-pink-600 inline-block mb-16 text-white">
-          About Me
-        </h2>
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+            My <span className="text-gradient">Expertise</span>
+          </h2>
+          <p className="text-slate-600 max-w-2xl mx-auto">
+            I combine deep technical knowledge with a product-first mindset to build comprehensive software solutions.
+          </p>
+        </div>
 
         {/* Grid: now 3 columns on xl, 2 on md */}
-        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-10 md:gap-16 text-left w-full">
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8 w-full">
           {/* Web Developer */}
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300 p-6 sm:p-8">
-            <div className="flex items-center gap-4 text-white mb-4">
-              <FaLaptopCode size={32} className="text-blue-500" />
-              <h3 className="text-2xl font-semibold">Web Developer</h3>
+          <div className="glass-card rounded-2xl p-8 hover:shadow-xl transition-all duration-300 group">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="p-3 bg-blue-500/10 rounded-lg group-hover:bg-blue-500/20 transition-colors">
+                <FaLaptopCode size={28} className="text-blue-500" />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900">Frontend Ops</h3>
             </div>
-            <p className="text-gray-300 leading-relaxed">
-              I craft fast, accessible, and pixel-perfect web apps with <span className="text-white font-semibold">React, Next.js, Tailwind</span>,
-              and modern tooling. From landing pages to complex dashboards, I blend clean UI with robust engineering to ship reliably and iterate quickly.
+            <p className="text-slate-600 leading-relaxed mb-6 text-sm">
+              Crafting pixel-perfect, accessible, and performant web interfaces. I specialize in the React ecosystem.
             </p>
+            <div className="flex flex-wrap gap-2">
+              <span className="px-3 py-1 rounded-full bg-blue-50 text-xs text-blue-700 border border-blue-100">React.js</span>
+              <span className="px-3 py-1 rounded-full bg-blue-50 text-xs text-blue-700 border border-blue-100">Next.js</span>
+              <span className="px-3 py-1 rounded-full bg-blue-50 text-xs text-blue-700 border border-blue-100">Tailwind CSS</span>
+              <span className="px-3 py-1 rounded-full bg-blue-50 text-xs text-blue-700 border border-blue-100">TypeScript</span>
+            </div>
           </div>
 
           {/* Mobile App Developer */}
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300 p-6 sm:p-8">
-            <div className="flex items-center gap-4 text-white mb-4">
-              <FaMobileAlt size={32} className="text-green-500" />
-              <h3 className="text-2xl font-semibold">Mobile App Developer</h3>
+          <div className="glass-card rounded-2xl p-8 hover:shadow-xl transition-all duration-300 group">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="p-3 bg-green-500/10 rounded-lg group-hover:bg-green-500/20 transition-colors">
+                <FaMobileAlt size={28} className="text-green-500" />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900">Mobile Dev</h3>
             </div>
-            <p className="text-gray-300 leading-relaxed">
-              I build smooth, cross-platform apps with <span className="text-white font-semibold">React Native</span>—feels-native UX, efficient state
-              management, secure APIs, and optimized bundles for both Android & iOS. From MVP to production, performance is a first-class citizen.
+            <p className="text-slate-600 leading-relaxed mb-6 text-sm">
+              Building cross-platform mobile applications that feel native. Seamless performance on both iOS and Android.
             </p>
+            <div className="flex flex-wrap gap-2">
+              <span className="px-3 py-1 rounded-full bg-green-50 text-xs text-green-700 border border-green-100">React Native</span>
+              <span className="px-3 py-1 rounded-full bg-green-50 text-xs text-green-700 border border-green-100">Expo</span>
+              <span className="px-3 py-1 rounded-full bg-green-50 text-xs text-green-700 border border-green-100">Redux</span>
+            </div>
           </div>
 
           {/* Backend Engineer */}
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300 p-6 sm:p-8">
-            <div className="flex items-center gap-4 text-white mb-4">
-              <FaServer size={32} className="text-yellow-400" />
-              <h3 className="text-2xl font-semibold">Backend Engineer</h3>
+          <div className="glass-card rounded-2xl p-8 hover:shadow-xl transition-all duration-300 group">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="p-3 bg-fuchsia-500/10 rounded-lg group-hover:bg-fuchsia-500/20 transition-colors">
+                <FaServer size={28} className="text-fuchsia-400" />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900">Backend Systems</h3>
             </div>
-            <p className="text-gray-300 leading-relaxed">
-              I design reliable, scalable APIs and services using <span className="text-white font-semibold">Node.js, Express, Nest.js</span>.
-              I care about architecture, auth, and observability—<span className="text-white font-semibold">JWT/OAuth2, RBAC, caching, queues</span>—and
-              robust data layers with <span className="text-white font-semibold">MongoDB, PostgreSQL</span>.
+            <p className="text-slate-600 leading-relaxed mb-6 text-sm">
+              Designing scalable APIs and microservices. I ensure data integrity, security, and high availability.
             </p>
-            <div className="mt-4 flex flex-wrap gap-2 text-xs">
-              <span className="px-3 py-1 rounded-full bg-black/30">REST & GraphQL</span>
-              <span className="px-3 py-1 rounded-full bg-black/30">Prisma/Mongoose</span>
-              <span className="px-3 py-1 rounded-full bg-black/30">Redis</span>
+            <div className="flex flex-wrap gap-2">
+              <span className="px-3 py-1 rounded-full bg-fuchsia-50 text-xs text-fuchsia-700 border border-fuchsia-100">Node.js</span>
+              <span className="px-3 py-1 rounded-full bg-fuchsia-50 text-xs text-fuchsia-700 border border-fuchsia-100">Express/Nest</span>
+              <span className="px-3 py-1 rounded-full bg-fuchsia-50 text-xs text-fuchsia-700 border border-fuchsia-100">GraphQL</span>
+              <span className="px-3 py-1 rounded-full bg-fuchsia-50 text-xs text-fuchsia-700 border border-fuchsia-100">PostgreSQL</span>
             </div>
           </div>
 
           {/* Databases & DevOps */}
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300 p-6 sm:p-8">
-            <div className="flex items-center gap-4 text-white mb-4">
-              <FaDatabase size={32} className="text-cyan-400" />
-              <h3 className="text-2xl font-semibold">Data & DevOps</h3>
+          <div className="glass-card rounded-2xl p-8 hover:shadow-xl transition-all duration-300 group">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="p-3 bg-cyan-500/10 rounded-lg group-hover:bg-cyan-500/20 transition-colors">
+                <FaDocker size={28} className="text-cyan-400" />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900">DevOps & Cloud</h3>
             </div>
-            <p className="text-gray-300 leading-relaxed">
-              Schema design, indexing, backups, and migrations are part of my routine. I ship with
-              <span className="text-white font-semibold"> Docker</span>, set up <span className="text-white font-semibold">CI/CD</span>, monitor with logs/metrics,
-              and tune performance for real-world traffic.
+            <p className="text-slate-600 leading-relaxed mb-6 text-sm">
+              Automating deployments and managing cloud infrastructure. CI/CD pipelines and containerization expert.
             </p>
-            <div className="mt-4 flex flex-wrap gap-2 text-xs">
-              <span className="px-3 py-1 rounded-full bg-black/30">PostgreSQL/MongoDB</span>
-              <span className="px-3 py-1 rounded-full bg-black/30">Docker</span>
-              <span className="px-3 py-1 rounded-full bg-black/30">CI/CD</span>
+            <div className="flex flex-wrap gap-2">
+              <span className="px-3 py-1 rounded-full bg-cyan-50 text-xs text-cyan-700 border border-cyan-100">Docker</span>
+              <span className="px-3 py-1 rounded-full bg-cyan-50 text-xs text-cyan-700 border border-cyan-100">AWS</span>
+              <span className="px-3 py-1 rounded-full bg-cyan-50 text-xs text-cyan-700 border border-cyan-100">CI/CD</span>
             </div>
           </div>
 
           {/* Machine Learning */}
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300 p-6 sm:p-8">
-            <div className="flex items-center gap-4 text-white mb-4">
-              <SiTensorflow size={32} className="text-orange-400" />
-              <h3 className="text-2xl font-semibold">Machine Learning</h3>
+          <div className="glass-card rounded-2xl p-8 hover:shadow-xl transition-all duration-300 group">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="p-3 bg-orange-500/10 rounded-lg group-hover:bg-orange-500/20 transition-colors">
+                <SiTensorflow size={28} className="text-orange-400" />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900">AI / ML</h3>
             </div>
-            <p className="text-gray-300 leading-relaxed">
-              I build data-driven features—classification, recommendations, NLP pre-processing—with
-              <span className="text-white font-semibold"> Python, scikit-learn, TensorFlow</span>. I focus on clean pipelines, evaluation, and shipping
-              models behind stable APIs for real users.
+            <p className="text-slate-600 leading-relaxed mb-6 text-sm">
+              Integrating intelligence into applications using Python and modern ML libraries for data-driven features.
             </p>
-            <div className="mt-4 flex flex-wrap gap-2 text-xs">
-              <span className="px-3 py-1 rounded-full bg-black/30">Pandas/NumPy</span>
-              <span className="px-3 py-1 rounded-full bg-black/30">Feature Engg.</span>
-              <span className="px-3 py-1 rounded-full bg-black/30">Model Serving</span>
+            <div className="flex flex-wrap gap-2">
+              <span className="px-3 py-1 rounded-full bg-orange-50 text-xs text-orange-700 border border-orange-100">Python</span>
+              <span className="px-3 py-1 rounded-full bg-orange-50 text-xs text-orange-700 border border-orange-100">TensorFlow</span>
+              <span className="px-3 py-1 rounded-full bg-orange-50 text-xs text-orange-700 border border-orange-100">Pandas</span>
             </div>
           </div>
 
-          {/* Deep Learning / NLP / CV */}
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300 p-6 sm:p-8">
-            <div className="flex items-center gap-4 text-white mb-4">
-              <FaBrain size={32} className="text-purple-400" />
-              <h3 className="text-2xl font-semibold">Deep Learning</h3>
+          {/* Freelance */}
+          <div className="glass-card rounded-2xl p-8 hover:shadow-xl transition-all duration-300 group ring-1 ring-accent-primary/40 relative overflow-hidden">
+            <div className="absolute top-0 right-0 bg-accent-primary/20 text-accent-primary text-[10px] font-bold px-2 py-1 rounded-bl-lg">
+              HIRE ME
             </div>
-            <p className="text-gray-300 leading-relaxed">
-              From fine-tuning transformers to image inference, I work with <span className="text-white font-semibold">PyTorch</span> and modern
-              DL tooling to deliver practical solutions—text classification, embeddings, and lightweight CV models optimized for production.
+            <div className="flex items-center gap-4 mb-6">
+              <div className="p-3 bg-accent-primary/10 rounded-lg group-hover:bg-accent-primary/20 transition-colors">
+                <FaHandshake size={28} className="text-accent-primary" />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900">Freelance</h3>
+            </div>
+            <p className="text-slate-600 leading-relaxed mb-6 text-sm">
+              Available for contract work. From MVP development to legacy code refactoring and performance optimization.
             </p>
-            <div className="mt-4 flex flex-wrap gap-2 text-xs">
-              <span className="px-3 py-1 rounded-full bg-black/30">Transformers</span>
-              <span className="px-3 py-1 rounded-full bg-black/30">PyTorch</span>
-              <span className="px-3 py-1 rounded-full bg-black/30">ONNX/Optimization</span>
+            <div className="flex flex-wrap gap-2">
+              <span className="px-3 py-1 rounded-full bg-cyan-50 text-xs text-accent-primary border border-cyan-100">Web Apps</span>
+              <span className="px-3 py-1 rounded-full bg-cyan-50 text-xs text-accent-primary border border-cyan-100">Mobile Apps</span>
+              <span className="px-3 py-1 rounded-full bg-cyan-50 text-xs text-accent-primary border border-cyan-100">Consulting</span>
             </div>
           </div>
+
         </div>
 
-        {/* Footer Description */}
-        <div className="mt-16 max-w-3xl text-lg text-gray-400 leading-relaxed flex flex-col items-center gap-4 text-center">
-          <FaHandshake size={40} className="text-red-500" />
-          <p>
-            I’m a builder at heart—combining product sense with solid engineering across frontend, backend, and ML.
-            Whether you’re validating an MVP or scaling to thousands of users, I bring clarity, reliability, and momentum.
-            Let’s turn ideas into software people love to use.
-          </p>
-        </div>
       </div>
     </div>
   );

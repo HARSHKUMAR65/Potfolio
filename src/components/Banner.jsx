@@ -1,92 +1,92 @@
+"use client";
+
 import { ReactTyped } from 'react-typed';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { SiHashnode } from 'react-icons/si';
 
 function Banner() {
-  // const handleDownload = () => {
-  //   const link = document.createElement('a');
-  //   link.href = '/assets/Harsh_resume.pdf';
-  //   link.setAttribute('download', 'Harsh_resume.pdf');
-  //   document.body.appendChild(link);
-  //   link.click();
-  //   document.body.removeChild(link);
-  // };
-
   return (
-    <div className="w-full py-[110px]">
-      <div className="max-w-[1240px] mx-auto text-center">
+    <div className="w-full py-20 lg:py-32 flex flex-col items-center justify-center min-h-screen">
+      <div className="max-w-[1240px] mx-auto text-center px-4">
 
-        {/* Intro */}
-        <div className="text-2xl text-white md:text-4xl font-bold md:p-[24px] p-[5px]">
-          👋 Hello, I’m
+        {/* Intro Tag */}
+        <div className="inline-block px-4 py-1.5 mb-6 rounded-full glass-card text-accent-primary text-sm font-medium tracking-wide">
+          Available for Freelance Projects 🚀
         </div>
 
-        {/* Name */}
-        <h2 className="text-white font-bold md:text-[80px] text-3xl md:p-[24px] p-[15px]">
-          Harsh Kumar
-        </h2>
+        {/* Intro */}
+        <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold text-slate-900 mb-6 tracking-tight">
+          Hi, I am <span className="text-gradient">Harsh Kumar</span>
+        </h1>
 
         {/* Typed Text */}
-        <div className="text-[15px] md:text-[50px] bg-gradient-to-r from-white via-gray-400 to-white bg-clip-text text-transparent font-bold md:p-[24px] p-[15px]">
+        <div className="text-lg sm:text-2xl md:text-3xl text-slate-600 font-medium mb-8 h-[40px]">
+          I build{' '}
           <ReactTyped
-            className="pl-3"
+            className="text-slate-900"
             strings={[
-              'Software Engineer | 2+ Years of Experience',
-              'Full-Stack Developer | React, Node.js, Express, MongoDB',
-              'Building Scalable Web & Mobile Applications',
-              'Passionate About Problem-Solving & Clean Code'
+              'Scalable Web Applications',
+              'High-Performance Mobile Apps',
+              'Robust Backend Systems',
+              'Modern User Interfaces'
             ]}
-            typeSpeed={80}
+            typeSpeed={50}
+            backSpeed={30}
             loop
           />
         </div>
 
-
-        <p className="text-gray-300 md:text-xl text-sm max-w-2xl mx-auto leading-relaxed mt-6">
-          🚀 I specialize in developing modern, user-friendly <span className="text-white font-semibold">websites</span>
-          and <span className="text-white font-semibold">mobile apps</span>. I help businesses and startups bring their ideas to life.
-          <span className="block mt-3">
-            I also take on <span className="text-white font-semibold">freelance / contract projects</span>—from MVPs and feature builds to
-            bug fixes, performance audits, and app launches. <span className="text-white font-semibold">Available worldwide (remote)</span>
-            for short-term or ongoing engagements.
-          </span>
+        <p className="text-slate-600 md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
+          A passionate <span className="text-slate-900 font-semibold">Full Stack Developer</span> specialized in building exceptional digital experiences.
+          From <span className="text-slate-900 font-semibold">concept to deployment</span>, I help startups and businesses solve complex problems with clean, efficient code.
         </p>
 
-
-        {/* Resume Button */}
-        {/* <button
-          onClick={handleDownload}
-          className="bg-white text-black font-semibold rounded-xl px-6 py-3 mt-6 hover:bg-gray-200 transition"
-        >
-          📄 Download My Resume
-        </button> */}
+        {/* CTAs */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+          <a
+            href="mailto:harshkumar672001@gmail.com"
+            className="px-8 py-4 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold text-lg shadow-lg hover:shadow-cyan-500/25 hover:scale-105 transition-all duration-300"
+          >
+            Hire Me Now
+          </a>
+          {/* <a
+            href="#projects"
+            className="px-8 py-4 rounded-full glass-card text-slate-900 font-semibold text-lg hover:shadow-xl transition-all duration-300"
+          >
+            View Projects
+          </a> */}
+        </div>
 
         {/* Social Icons */}
-        <div className="flex justify-center items-center gap-6 mt-10">
-          <a href="https://github.com/HARSHKUMAR65" target="_blank" rel="noopener noreferrer">
-            <FaGithub className="text-white hover:text-pink-500 text-3xl transition" />
+        <div className="flex justify-center items-center gap-8 mt-12">
+          <a href="https://github.com/HARSHKUMAR65" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-slate-900 hover:scale-110 transition-all duration-300">
+            <FaGithub size={30} />
           </a>
-          <a href="https://www.linkedin.com/in/harsh-kumar-1849b61b8/" target="_blank" rel="noopener noreferrer">
-            <FaLinkedin className="text-white hover:text-pink-500 text-3xl transition" />
+          <a href="https://www.linkedin.com/in/harsh-kumar-1849b61b8/" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-blue-600 hover:scale-110 transition-all duration-300">
+            <FaLinkedin size={30} />
           </a>
-          <a href="https://hashnode.com/@harsh182" target="_blank" rel="noopener noreferrer">
-            <SiHashnode className="text-white hover:text-pink-500 text-3xl transition" />
+          <a href="https://hashnode.com/@harsh182" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-blue-500 hover:scale-110 transition-all duration-300">
+            <SiHashnode size={30} />
           </a>
         </div>
 
-        {/* Extra Highlight (Optional Stats) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-gray-200 mt-12 max-w-4xl mx-auto">
-          <div className="bg-gray-800/50 p-6 rounded-xl hover:scale-105 transition">
-            <h3 className="text-3xl font-bold text-white">10+</h3>
-            <p className="mt-2">Projects Delivered</p>
+        {/* Stats */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20 pt-10 border-t border-slate-200">
+          <div className="flex flex-col items-center">
+            <span className="text-3xl font-bold text-slate-900">2+</span>
+            <span className="text-sm text-slate-500 mt-1">Years Experience</span>
           </div>
-          <div className="bg-gray-800/50 p-6 rounded-xl hover:scale-105 transition">
-            <h3 className="text-3xl font-bold text-white">5+</h3>
-            <p className="mt-2">Tech Stacks Mastered</p>
+          <div className="flex flex-col items-center">
+            <span className="text-3xl font-bold text-slate-900">10+</span>
+            <span className="text-sm text-slate-500 mt-1">Projects Done</span>
           </div>
-          <div className="bg-gray-800/50 p-6 rounded-xl hover:scale-105 transition">
-            <h3 className="text-3xl font-bold text-white">100%</h3>
-            <p className="mt-2">Client Satisfaction</p>
+          <div className="flex flex-col items-center">
+            <span className="text-3xl font-bold text-slate-900">5+</span>
+            <span className="text-sm text-slate-500 mt-1">Happy Clients</span>
+          </div>
+          <div className="flex flex-col items-center">
+            <span className="text-3xl font-bold text-slate-900">24/7</span>
+            <span className="text-sm text-slate-500 mt-1">Support</span>
           </div>
         </div>
 

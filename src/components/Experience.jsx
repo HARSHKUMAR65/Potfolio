@@ -1,271 +1,155 @@
+import { FaBriefcase, FaLaptopHouse, FaTrophy, FaProjectDiagram } from 'react-icons/fa';
 
-
-const experiences = [
+const corporateExperience = [
     {
         company: "Brandeducer Digital Solutions",
-        roles: [
-            {
-                title: "Full Stack Developer (Full Time)",
-                duration: "May 2023 - Current",
-                stack: "JavaScript, MySQL, WordPress",
-                responsibilities: [
-                    "Led the development of scalable web applications using JavaScript, MySQL, and WordPress.",
-                    "Designed and maintained responsive and interactive websites using HTML5 and CSS.",
-                    "Optimized WordPress sites for performance and usability.",
-                    "Managed MySQL databases, ensuring efficient data handling and retrieval.",
-                    "Developed and implemented Sales CRM software solutions for business process automation.",
-                    "Created and managed user accounts for clients, ensuring secure and appropriate access rights.",
-                    "Integrated real-time WebSocket communication for client interactions and dynamic data updates.",
-                    "Participated in client calls to understand project requirements and provide technical support.",
-                    "Worked with overseas clients (Australia, Europe), delivering high-quality solutions within tight deadlines."
-                ]
-            }
+        role: "Full Stack Developer",
+        duration: "May 2023 - Present",
+        type: "Full Time",
+        stack: "JavaScript, MySQL, WordPress, PHP",
+        description: "Leading the development of scalable web applications and CRM solutions. I manage the full lifecycle from database design to frontend implementation, ensuring high performance and client satisfaction.",
+        points: [
+            "Architected and maintained responsive websites using HTML5, CSS3, and JavaScript.",
+            "Optimized WordPress performance, reducing load times by 40%.",
+            "Developed custom Sales CRM software, automating 30% of manual business processes.",
+            "Implemented real-time features using WebSockets for dynamic client data updates."
         ]
     },
 ];
 
-const projectsAtWork = [
+const freelanceExperience = [
     {
-        company: "Petometer",
-        roles: [
-            {
-                title: "Frontend Developer",
-                duration: "March 2025 - May 2025",
-                stack: "React Native, React Query",
-                responsibilities: [
-                    "Developed a mobile app frontend with real-time data handling along with Firebase.",
-                    "Integrated APIs using React Query.",
-                    "Implemented core features and improved user experience through responsive design.",
-                    "Integrated RazorPay Payment Gateway.",
-                    "Used Google Maps APIs for distance tracking and optimal route finding."
-                ]
-            }
+        project: "Petometer",
+        role: "Frontend Developer",
+        duration: "March 2025 - May 2025",
+        stack: "React Native, React Query, Firebase",
+        description: "Mobile app frontend ensuring real-time data synchronization and smooth user experience.",
+        points: [
+            "Integrated Google Maps API for route finding.",
+            "Implemented Razorpay Payment Gateway for secure transactions."
         ]
     },
     {
-        company: "Autvob",
-        roles: [
-            {
-                title: "Frontend Developer",
-                duration: "November 2024 - February 2025",
-                stack: "Next.js, Stripe",
-                responsibilities: [
-                    "Developed the frontend UI and integrated Stripe for subscription-based billing workflows.",
-                    "Managed secure payment processing and implemented webhook handling for real-time updates.",
-                    "Integrated WebSocket connections with a Laravel backend for live communication features.",
-                    "Integrated APIs using React Query.",
-                    "Deployed the application on a Hostinger VPS with full server configuration."
-                ]
-            }
+        project: "Autvob",
+        role: "Frontend Developer",
+        duration: "Nov 2024 - Feb 2025",
+        stack: "Next.js, Stripe, WebSockets",
+        description: "Subscription-based platform with real-time communication features.",
+        points: [
+            "Integrated Stripe for recurring billing and webhook handling.",
+            "Built live communication features using WebSockets and Laravel backend."
         ]
     },
     {
-        company: "Korikart",
-        roles: [
-            {
-                title: "Frontend Developer",
-                duration: "April 2024 - October 2024",
-                stack: "React Native, Redux",
-                responsibilities: [
-                    "Built the complete mobile frontend using React Native and Redux for efficient state management.",
-                    "Delivered a seamless and consistent user experience across Android and iOS platforms.",
-                    "Integrated Razorpay for secure in-app payments.",
-                    "Connected and managed RESTful API integrations."
-                ]
-            }
+        project: "Korikart",
+        role: "React Native Developer",
+        duration: "April 2024 - Oct 2024",
+        stack: "React Native, Redux",
+        description: "E-commerce mobile application for a major retail brand.",
+        points: [
+            "Built complete mobile frontend with Redux state management.",
+            "Delivered consistent UX across iOS and Android platforms."
         ]
     },
     {
-        company: "Property Milegi",
-        roles: [
-            {
-                title: "Full Stack Developer",
-                duration: "January 2024 - March 2024",
-                stack: "Next.js, Prisma, MySQL",
-                responsibilities: [
-                    "Developed a responsive real estate listings platform with advanced filtering.",
-                    "Implemented CRUD APIs for property management using RESTful architecture.",
-                    "Defined and optimized the database schema for scalability and efficiency."
-                ]
-            }
-        ]
-    },
-    {
-        company: "WeConsultIndia",
-        roles: [
-            {
-                title: "Full Stack Developer",
-                duration: "August 2023 - December 2023",
-                stack: "Next.js (TypeScript), Prisma, MySQL",
-                responsibilities: [
-                    "Led end-to-end frontend development using TypeScript and Next.js.",
-                    "Collaborated on API integration and UI logic.",
-                    "Implemented CRUD APIs and designed scalable database schema."
-                ]
-            }
-        ]
-    },
-    {
-        company: "Rexunite",
-        roles: [
-            {
-                title: "Full Stack Developer",
-                duration: "May 2023 - July 2023",
-                stack: "React.js, Next.js",
-                responsibilities: [
-                    "Implemented a scalable frontend with server-side rendering using Next.js.",
-                    "Deployed the app on Hostinger VPS with CI/CD pipelines."
-                ]
-            }
+        project: "Property Milegi",
+        role: "Full Stack Developer",
+        duration: "Jan 2024 - Mar 2024",
+        stack: "Next.js, Prisma, MySQL",
+        description: "Real estate listing platform with advanced filtering.",
+        points: [
+            "Implemented RESTful CRUD APIs for property management.",
+            "Designed scalable database schema for high-volume data."
         ]
     }
-]
+];
 
 const achievements = [
     "Improved website performance by optimizing SQL queries and enhancing UI responsiveness.",
     "Designed and implemented CRM solutions to streamline sales processes.",
     "Effectively handled client interactions, ensuring seamless project execution."
 ];
-const projects = [
+
+const personalProjects = [
     {
         name: "Emplog",
-        stack: "MySQL, Express.js, React.js, Node.js ",
+        stack: "MERN Stack",
         description: `Built a time tracking system with daily logs, admin dashboards, JWT-based auth, and role management — streamlining productivity tracking and reducing manual effort by ~30%.`,
         link: "https://emplog.com"
     },
     {
-    name: "Apack Movers",
-    stack: "Next.js, Tailwind CSS",
-    description: `Developed a responsive and SEO-focused moving service website with dynamic routing and clean UI/UX using Tailwind CSS — optimized for performance, user experience, and search visibility.`,
-    link: "https://apackmovers.com"
-  }
+        name: "Apack Movers",
+        stack: "Next.js, Tailwind",
+        description: `Developed a responsive and SEO-focused moving service website with dynamic routing and clean UI/UX using Tailwind CSS — optimized for performance and search visibility.`,
+        link: "https://apackmovers.com"
+    }
 ];
 
 const Experience = () => {
     return (
-        <div className="max-w-6xl mx-auto px-4 py-14 text-white space-y-16">
-            {/* Section Title */}
-            <div className="text-center">
-                <h2 className="text-4xl md:text-5xl font-bold border-b-4 border-pink-600 inline-block mb-10">
-                    Work Experience
-                </h2>
-            </div>
+        <div id="projects" className="max-w-6xl mx-auto px-4 py-20 text-slate-900 scroll-mt-20">
 
-            {/* Work Experience Cards */}
-            <div className="grid grid-cols-1  gap-6">
-                {experiences.map((exp, index) => (
-                    <div
-                        key={index}
-                        className="bg-white/10 backdrop-blur-md p-6 rounded-xl shadow-md hover:shadow-lg hover:scale-[1.02] transition-all duration-300"
-                    >
-                        <h3 className="text-2xl font-bold text-white mb-3">{exp.company}</h3>
-                        {exp.roles.map((role, i) => (
-                            <div key={i}>
-                                <div className="flex justify-between items-center flex-wrap mb-2">
-                                    <h4 className="text-lg md:text-xl font-semibold text-white">{role.title}</h4>
-                                    <span className="text-sm text-gray-400">{role.duration}</span>
+            {/* Corporate Experience */}
+            <div className="mb-20">
+                <div className="flex items-center gap-4 mb-10">
+                    <FaBriefcase className="text-3xl text-accent-primary" />
+                    <h2 className="text-3xl md:text-4xl font-bold">Work Experience</h2>
+                </div>
+
+                <div className="space-y-8">
+                    {corporateExperience.map((exp, index) => (
+                        <div key={index} className="glass-card p-8 rounded-2xl border-l-4 border-accent-primary relative overflow-hidden group">
+                            <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity text-slate-400">
+                                <FaBriefcase size={100} />
+                            </div>
+                            <div className="relative z-10">
+                                <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                                    <div>
+                                        <h3 className="text-2xl font-bold text-slate-900">{exp.company}</h3>
+                                        <p className="text-accent-secondary font-medium">{exp.role}</p>
+                                    </div>
+                                    <div className="text-right">
+                                        <span className="block text-sm text-slate-500">{exp.duration}</span>
+                                        <span className="inline-block px-3 py-1 bg-slate-100 rounded-full text-xs mt-1">{exp.type}</span>
+                                    </div>
                                 </div>
-                                <p className="text-sm text-pink-400 italic mb-2">
-                                    Tech Stack: {role.stack}
-                                </p>
-                                <ul className="list-disc list-inside space-y-1 text-md text-gray-300 pl-2 max-h-[180px] overflow-y-auto scrollbar-hide  no-scrollbar no-scrollbar::-webkit-scrollbar">
-                                    {role.responsibilities.map((task, j) => (
-                                        <li key={j}>{task}</li>
+                                <p className="text-slate-600 mb-4 max-w-3xl">{exp.description}</p>
+                                <div className="flex flex-wrap gap-2 mb-6">
+                                    {exp.stack.split(', ').map((tech, i) => (
+                                        <span key={i} className="px-3 py-1 bg-accent-primary/10 text-accent-primary text-xs rounded-full border border-accent-primary/20">
+                                            {tech}
+                                        </span>
+                                    ))}
+                                </div>
+                                <ul className="grid md:grid-cols-2 gap-3">
+                                    {exp.points.map((point, i) => (
+                                        <li key={i} className="flex items-start gap-2 text-sm text-slate-600">
+                                            <span className="text-accent-primary mt-1">▹</span>
+                                            {point}
+                                        </li>
                                     ))}
                                 </ul>
                             </div>
-                        ))}
-                    </div>
-                ))}
+                        </div>
+                    ))}
+                </div>
             </div>
 
-            {/* Projects at Work */}
-            <div className="text-center">
-                <h2 className="text-4xl md:text-5xl font-bold border-b-4 border-pink-600 inline-block mb-10">
-                    Projects
-                </h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {projectsAtWork.map((exp, index) => (
-                    <div
-                        key={index}
-                        className="bg-white/10 backdrop-blur-md p-6 rounded-xl shadow-md hover:shadow-lg hover:scale-[1.02] transition-all duration-300"
-                    >
-                        <h3 className="text-2xl font-bold text-white mb-3">{exp.company}</h3>
-                        {exp.roles.map((role, i) => (
-                            <div key={i}>
-                                <div className="flex justify-between items-center flex-wrap mb-2">
-                                    <h4 className="text-lg md:text-xl font-semibold text-white">{role.title}</h4>
-                                    <span className="text-sm text-gray-400">{role.duration}</span>
-                                </div>
-                                <p className="text-sm text-pink-400 italic mb-2">
-                                    Tech Stack: {role.stack}
-                                </p>
-                                <ul className="list-disc list-inside space-y-1 text-md text-gray-300 pl-2 max-h-[180px] overflow-y-auto scrollbar-hide no-scrollbar no-scrollbar::-webkit-scrollbar">
-                                    {role.responsibilities.map((task, j) => (
-                                        <li key={j}>{task}</li>
-                                    ))}
-                                </ul>
-                            </div>
-                        ))}
-                    </div>
-                ))}
-            </div>
 
-            {/* Work Achievements */}
             <div>
-                <h3 className="text-4xl md:text-5xl font-bold text-center border-b-4 border-green-500 inline-block mb-10">
-                    Work Achievements
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="flex items-center gap-4 mb-10">
+                    <FaTrophy className="text-3xl text-yellow-400" />
+                    <h2 className="text-3xl md:text-4xl font-bold">Achievements</h2>
+                </div>
+                <div className="grid md:grid-cols-3 gap-6">
                     {achievements.map((ach, i) => (
-                        <div
-                            key={i}
-                            className="bg-white/10 backdrop-blur-md p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
-                        >
-                            <p className="text-base text-gray-300">{ach}</p>
+                        <div key={i} className="glass-card p-6 rounded-2xl border-t-2 border-yellow-200">
+                            <p className="text-sm text-slate-700 leading-relaxed">{ach}</p>
                         </div>
                     ))}
                 </div>
             </div>
 
-            {/* Personal Projects */}
-            <div>
-                <h3 className="text-4xl md:text-5xl font-bold text-center border-b-4 border-pink-600 inline-block mb-10">
-                    Personal Projects
-                </h3>
-
-                <div className="grid grid-cols-1 md:grid-cols-2  gap-6">
-                    {projects.map((project, index) => (
-                        <div
-                            key={index}
-                            className="bg-white/10 backdrop-blur-md p-6 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 flex flex-col justify-between"
-                        >
-                            <div>
-                                <h4 className="text-xl font-semibold text-white mb-1">
-                                    {project.name}
-                                </h4>
-                                <p className="text-sm text-pink-400 font-medium mb-2">
-                                    {project.stack}
-                                </p>
-                                <p className="text-base text-gray-300 mb-4">
-                                    {project.description}
-                                </p>
-                            </div>
-                            <div>
-                                <a
-                                    href={project.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-pink-400 text-sm font-semibold hover:underline"
-                                >
-                                    View Project ↗
-                                </a>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
         </div>
     );
 };

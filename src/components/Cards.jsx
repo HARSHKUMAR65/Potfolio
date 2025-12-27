@@ -1,13 +1,14 @@
 
+/* eslint-disable @next/next/no-img-element */
 
 const Cards = () => {
     return (
         <>
-            <h2 className='text-3xl text-white font-bold text-center'>Projects </h2>
-            <div className='w-full py-5  '>
-                <div className='max-w-[1240px] mx-auto grid md:grid-cols-3 gap-8 text-white'>
+            <h2 className='text-3xl text-slate-900 font-bold text-center'>Projects </h2>
+            <div className='w-full py-5'>
+                <div className='max-w-[1240px] mx-auto grid md:grid-cols-3 gap-8 text-slate-800'>
                     <a href="https://harshkumar65.github.io/Spinner-/">
-                        <div className='w-full shadow-2xl  flex flex-col p-4 my-4 rounded-lg hover:scale-105 duration-300 md:backdrop-blur-lg text-white'>
+                        <div className='w-full shadow-2xl bg-white flex flex-col p-4 my-4 rounded-lg hover:scale-105 duration-300 md:backdrop-blur-lg'>
                             <img className='w-20 mx-auto mt-[1.7rem] bg-white' src='https://harshkumar65.github.io/Spinner-/assets/wheel-2.png' alt="/" />
                             <h2 className='text-2xl font-bold text-center py-8'>Spinner</h2>
                             {/* <p className='text-center text-4xl font-bold'>$149</p> */}
@@ -21,7 +22,7 @@ const Cards = () => {
                         </div>
                     </a>
                     <a href="https://harshkumar65.github.io/Store_site/">
-                        <div className='w-full shadow-2xl  flex flex-col p-4 my-4 rounded-lg hover:scale-105 duration-300 md:backdrop-blur-lg'>
+                        <div className='w-full shadow-2xl bg-white flex flex-col p-4 my-4 rounded-lg hover:scale-105 duration-300 md:backdrop-blur-lg'>
                             <img className='w-20 mx-auto mt-[1.7rem] bg-white' src='https://mobirise.com/extensions/organicamp/assets/images/logo1.jpg' alt="/" />
                             <h2 className='text-2xl font-bold text-center py-8'>Vegan Store </h2>
                             {/* <p className='text-center text-4xl font-bold'>$149</p> */}
@@ -35,7 +36,7 @@ const Cards = () => {
                         </div>
                     </a>
                     <a href="https://github.com/HARSHKUMAR65/Wheather_app">
-                        <div className='w-full shadow-2xl  flex flex-col p-4 my-4 rounded-lg hover:scale-105 duration-300 md:backdrop-blur-lg'>
+                        <div className='w-full shadow-2xl bg-white flex flex-col p-4 my-4 rounded-lg hover:scale-105 duration-300 md:backdrop-blur-lg'>
                             <img className='w-20 mx-auto mt-[1.7rem] bg-white' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZICV0fftz_-7z6RqV753FHwIECEPSxjhi6g&usqp=CAU' alt="/" />
                             <h2 className='text-2xl font-bold text-center py-8'>Wheather Aplication </h2>
                             {/* <p className='text-center text-4xl font-bold'>$149</p> */}
