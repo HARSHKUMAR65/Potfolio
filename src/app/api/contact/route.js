@@ -1,5 +1,10 @@
 import nodemailer from "nodemailer";
+const SMTP_HOST="smtp.gmail.com";
+const SMTP_USER="kabiryadav55555@gmail.com";
+const SMTP_PASS="gcul arya puoz tdig";
+const CONTACT_TO_EMAIL="harshkumar672001@gmail.com";
 
+  
 export async function POST(request) {
   try {
     const { name, email, phone, message } = await request.json();
@@ -11,12 +16,12 @@ export async function POST(request) {
       );
     }
 
-    const smtpHost = process.env.SMTP_HOST;
-    const smtpUser = process.env.SMTP_USER;
-    const smtpPass = process.env.SMTP_PASS;
-    const toEmail = process.env.CONTACT_TO_EMAIL;
-    const fromEmail = process.env.CONTACT_FROM_EMAIL || smtpUser;
-    console.log
+    const smtpHost = SMTP_HOST;
+    const smtpUser = SMTP_USER;
+    const smtpPass = SMTP_PASS;
+    const toEmail = CONTACT_TO_EMAIL;
+    const fromEmail = SMTP_USER || smtpUser;
+    console.log(smtpHost, smtpUser, smtpPass, toEmail);
 
     if (!smtpHost || !smtpUser || !smtpPass || !toEmail) {
       console.warn(
