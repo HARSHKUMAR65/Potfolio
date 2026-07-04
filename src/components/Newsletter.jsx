@@ -1,152 +1,123 @@
-import { FaCode, FaRocket, FaCloud, FaCogs, FaBrain, FaMobileAlt } from "react-icons/fa";
-import { MdStorage, MdApi } from "react-icons/md";
-import { AiOutlineBug } from "react-icons/ai";
+import { FaCloud, FaCode, FaCogs, FaDatabase, FaMobileAlt, FaRobot, FaRocket } from "react-icons/fa";
+import { MdApi, MdPayments, MdStorage } from "react-icons/md";
 
 const skills = [
   {
-    title: "Frontend Development",
+    title: "Languages & Web Core",
     icon: <FaCode className="text-accent-primary text-xl mr-2" />,
     items: [
-      "React.js, Next.js, React Native, TypeScript",
-      "Redux Toolkit, React Query, Zustand",
-      "Tailwind CSS, Framer Motion, Shadcn UI",
-      "SSR/SSG, Performance Optimization"
-    ]
+      "JavaScript ES6+, TypeScript, Python, SQL",
+      "HTML5, CSS3, responsive UI",
+      "Performance-focused frontend architecture",
+    ],
   },
   {
-    title: "State Management & APIs",
-    icon: <MdApi className="text-blue-400 text-xl mr-2" />,
-    items: [
-      "Redux Toolkit & RTK Query, Context API",
-      "REST & GraphQL integration, WebSockets",
-      "Auth flows: JWT/OAuth2, Zod Validation"
-    ]
-  },
-  {
-    title: "Backend Engineering",
-    icon: <FaCogs className="text-purple-400 text-xl mr-2" />,
-    items: [
-      "Node.js, Express, Nest.js architecture",
-      "Microservices, Caching (Redis), Queues",
-      "Payment Gateways (Stripe/Razorpay)"
-    ]
-  },
-  {
-    title: "Databases & ORMs",
-    icon: <MdStorage className="text-cyan-400 text-xl mr-2" />,
-    items: [
-      "PostgreSQL, MongoDB, Redis",
-      "Prisma, Mongoose, TypeORM",
-      "Complex Aggregations, Indexing"
-    ]
-  },
-  {
-    title: "DevOps & Cloud",
-    icon: <FaCloud className="text-sky-400 text-xl mr-2" />,
-    items: [
-      "Docker, Kubernetes, CI/CD Pipelines",
-      "AWS (EC2, S3, Lambda), Vercel, Railway",
-      "Nginx, Linux Administration"
-    ]
-  },
-  {
-    title: "Testing & Quality",
-    icon: <AiOutlineBug className="text-yellow-400 text-xl mr-2" />,
-    items: [
-      "Jest, React Testing Library, Playwright",
-      "Postman/Insomnia, API Testing",
-      "Code Quality: ESLint, Prettier, Husky"
-    ]
-  },
-  // {
-  //   title: "Performance & Accessibility",
-  //   icon: <MdSpeed className="text-emerald-400 text-xl mr-2" />,
-  //   items: [
-  //     "Code-splitting, lazy loading, bundle optimization",
-  //     "Caching strategies, image optimization, CDN",
-  //     "Accessibility (ARIA, keyboard nav, color contrast)"
-  //   ]
-  // },
-  {
-    title: "Mobile Development",
+    title: "Frontend & Mobile",
     icon: <FaMobileAlt className="text-green-400 text-xl mr-2" />,
     items: [
-      "React Native CLI & Expo",
-      "Native Modules, Push Notifications",
-      "App Store & Play Store Deployment"
-    ]
+      "Next.js, React.js, React Native",
+      "Tailwind CSS, Material UI",
+      "Redux, React Query, SSR, ISR",
+    ],
   },
   {
-    title: "Machine Learning & AI",
-    icon: <FaBrain className="text-orange-400 text-xl mr-2" />,
+    title: "Backend & APIs",
+    icon: <MdApi className="text-blue-400 text-xl mr-2" />,
     items: [
-      "Python, Pandas, NumPy, Scikit-learn",
-      "TensorFlow/PyTorch basics",
-      "LLM Integration (OpenAI/LangChain)"
-    ]
+      "Node.js, Express.js, Flask",
+      "REST APIs, Webhooks, Authentication",
+      "API integrations and SaaS module delivery",
+    ],
   },
-  // {
-  //   title: "Security & Best Practices",
-  //   icon: <FaShieldAlt className="text-red-400 text-xl mr-2" />,
-  //   items: [
-  //     "Input validation & sanitization, OWASP top 10 awareness",
-  //     "HTTPS, CORS, CSRF, content security policy",
-  //     "Secrets management, env handling, audit logging"
-  //   ]
-  // },
   {
-    title: "Tools & Workflow",
+    title: "Databases & ORM",
+    icon: <FaDatabase className="text-cyan-400 text-xl mr-2" />,
+    items: [
+      "PostgreSQL, MySQL, MongoDB",
+      "Prisma ORM, Redis",
+      "Query optimization and data modeling",
+    ],
+  },
+  {
+    title: "Cloud & DevOps",
+    icon: <FaCloud className="text-sky-400 text-xl mr-2" />,
+    items: [
+      "Docker, AWS EC2, AWS S3, AWS ECS",
+      "CI/CD, Vercel, Git, GitHub",
+      "Deployment and post-launch support",
+    ],
+  },
+  {
+    title: "Real-time & Jobs",
+    icon: <MdStorage className="text-purple-400 text-xl mr-2" />,
+    items: [
+      "BullMQ, Redis-backed job queues",
+      "Socket.io, WebSockets",
+      "Background job processing and notifications",
+    ],
+  },
+  {
+    title: "Payments",
+    icon: <MdPayments className="text-yellow-500 text-xl mr-2" />,
+    items: [
+      "Stripe API integrations",
+      "Subscriptions, webhooks, invoices",
+      "Payment failure recovery workflows",
+    ],
+  },
+  {
+    title: "Automation",
+    icon: <FaRobot className="text-orange-400 text-xl mr-2" />,
+    items: [
+      "Selenium, Puppeteer, BeautifulSoup",
+      "Python data extraction scrapers",
+      "Manual workflow automation",
+    ],
+  },
+  {
+    title: "Leadership Workflow",
     icon: <FaRocket className="text-pink-400 text-xl mr-2" />,
     items: [
-      "Git, GitHub/GitLab, Trunk-based dev",
-      "Jira, Trello, Linear",
-      "Figma (Developer Handoff)"
-    ]
+      "Sprint planning and technical mentoring",
+      "Code reviews and release quality",
+      "Client scoping and milestone delivery",
+    ],
   },
-  // {
-  //   title: "Other Skills",
-  //   icon: <GiSkills className="text-orange-400 text-xl mr-2" />,
-  //   items: [
-  //     "Data structures & CRUD patterns, API design principles",
-  //     "3rd-party integrations (maps, payments, analytics)",
-  //     "Agile/Scrum, clear documentation, client communication"
-  //   ]
-  // }
 ];
 
 const Newsletter = () => {
   return (
-    <section className="py-24 px-4 relative">
+    <section className="section-reveal py-24 px-4 relative">
       <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-          Technical <span className="text-gradient">Arsenal</span>
+        <h2 className="text-4xl md:text-5xl font-bold text-slate-950 mb-4">
+          Technical <span className="text-gradient">Skills</span>
         </h2>
         <p className="text-slate-600 max-w-3xl mx-auto">
-          A deep dive into the technologies I use to build scalable and robust applications.
+          Strong expertise in Next.js, React, Node.js, PostgreSQL, Redis, BullMQ, AWS, Docker, Stripe, and Python automation.
         </p>
       </div>
 
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {skills.map((section, index) => (
-          <div
-            key={index}
-            className="glass-card p-6 rounded-2xl hover:shadow-xl transition-all duration-300 group"
+        {skills.map((section) => (
+          <article
+            key={section.title}
+            className="glass-card depth-card p-6 rounded-lg transition-all duration-300 group"
           >
             <div className="flex items-center justify-start mb-4 gap-3">
-              <div className="p-2 bg-white/5 rounded-lg group-hover:scale-110 transition-transform">
+              <div className="p-2 bg-white/60 rounded-lg shadow-lg shadow-slate-900/5 group-hover:scale-110 transition-transform">
                 {section.icon}
               </div>
-              <h3 className="text-lg text-slate-900 font-bold">{section.title}</h3>
+              <h3 className="text-lg text-slate-950 font-bold">{section.title}</h3>
             </div>
             <ul className="space-y-2">
-              {section.items.map((item, idx) => (
-                <li key={idx} className="flex items-start text-sm text-slate-600">
+              {section.items.map((item) => (
+                <li key={item} className="flex items-start text-sm text-slate-600">
                   <span className="text-accent-primary mr-2 mt-1">▹</span>
                   {item}
                 </li>
               ))}
             </ul>
-          </div>
+          </article>
         ))}
       </div>
     </section>

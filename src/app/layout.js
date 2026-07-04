@@ -8,9 +8,9 @@ const outfit = Outfit({
 });
 
 export const metadata = {
-  title: "Harsh Kumar | Full Stack Developer Portfolio",
+  title: "Harsh Kumar | Senior Full Stack Engineer & Technical Lead",
   description:
-    "Portfolio of Harsh Kumar – building scalable web, mobile, and backend solutions with modern JavaScript stacks.",
+    "Portfolio of Harsh Kumar, Senior Full Stack Engineer and Technical Lead building SaaS platforms, real-time systems, CRM products, automation tools, and high-performance web applications.",
   icons: {
     icon: "/favicon.svg",
   },

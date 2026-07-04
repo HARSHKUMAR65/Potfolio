@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { MdEmail, MdPhone, MdMessage } from "react-icons/md";
+import { MdEmail, MdLocationOn, MdPhone, MdMessage } from "react-icons/md";
 import { FaWhatsapp, FaUser } from "react-icons/fa";
 
 const FORM_ENDPOINT = "/api/contact";
@@ -66,62 +66,74 @@ const Contact = () => {
   };
 
   return (
-    <div name="contact" id="contact" className="w-full py-24 px-4 relative">
+    <section name="contact" id="contact" className="section-reveal w-full py-24 px-4 relative">
       <div className="max-w-6xl mx-auto flex flex-col items-center">
 
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-950 mb-4">
             Get In <span className="text-gradient">Touch</span>
           </h2>
           <p className="text-slate-600 max-w-xl mx-auto">
-            Have a project in mind or want to discuss a freelance opportunity? I&apos;m just a message away.
+            Open to Senior Full Stack Engineer, Technical Lead, Full Stack Developer, Product Engineer, and Remote Full Stack Engineer opportunities.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 w-full">
           {/* Left: Contact Info */}
           <div className="flex flex-col space-y-8">
-            <div className="glass-card p-8 rounded-2xl flex items-center gap-6 hover:shadow-xl transition-colors">
-              <div className="bg-accent-primary/10 p-4 rounded-xl text-accent-primary">
+            <div className="glass-card depth-card p-8 rounded-lg flex items-center gap-6 transition-colors">
+              <div className="bg-accent-primary/10 p-4 rounded-lg text-accent-primary shadow-lg shadow-cyan-500/10">
                 <MdEmail size={32} />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-slate-900">Email</h3>
+                <h3 className="text-xl font-bold text-slate-950">Email</h3>
                 <a href="mailto:harshkumar672001@gmail.com" className="text-slate-600 hover:text-slate-900 transition-colors">
                   harshkumar672001@gmail.com
                 </a>
               </div>
             </div>
 
-            <div className="glass-card p-8 rounded-2xl flex items-center gap-6 hover:shadow-xl transition-colors">
-              <div className="bg-green-500/10 p-4 rounded-xl text-green-500">
+            <div className="glass-card depth-card p-8 rounded-lg flex items-center gap-6 transition-colors">
+              <div className="bg-green-500/10 p-4 rounded-lg text-green-500 shadow-lg shadow-green-500/10">
                 <FaWhatsapp size={32} />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-slate-900">WhatsApp</h3>
+                <h3 className="text-xl font-bold text-slate-950">WhatsApp</h3>
                 <a href="https://wa.me/918800288159" target="_blank" rel="noreferrer" className="text-slate-600 hover:text-slate-900 transition-colors">
                   +91 8800288159
                 </a>
               </div>
             </div>
 
-            <div className="glass-card p-8 rounded-2xl flex items-center gap-6 hover:shadow-xl transition-colors">
-              <div className="bg-blue-500/10 p-4 rounded-xl text-blue-500">
+            <div className="glass-card depth-card p-8 rounded-lg flex items-center gap-6 transition-colors">
+              <div className="bg-blue-500/10 p-4 rounded-lg text-blue-500 shadow-lg shadow-blue-500/10">
                 <MdPhone size={32} />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-slate-900">Phone</h3>
+                <h3 className="text-xl font-bold text-slate-950">Phone</h3>
                 <a href="tel:+918800288159" className="text-slate-600 hover:text-slate-900 transition-colors">
                   +91 8800288159
                 </a>
               </div>
             </div>
+
+            <div className="glass-card depth-card p-8 rounded-lg flex items-center gap-6 transition-colors">
+              <div className="bg-violet-500/10 p-4 rounded-lg text-violet-500 shadow-lg shadow-violet-500/10">
+                <MdLocationOn size={32} />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-slate-950">Location</h3>
+                <p className="text-slate-600">
+                  Gurgaon, Haryana, India | Open to Remote
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* Right: Contact Form */}
-          <div className="glass-card rounded-2xl p-8 shadow-lg">
-            <h3 className="text-2xl font-bold mb-6 text-slate-900">Send me a message</h3>
+          <div className="glass-card depth-card rounded-lg p-8 shadow-lg">
+            <h3 className="text-2xl font-bold mb-6 text-slate-950">Send me a message</h3>
 
             {status.msg && (
               <div
@@ -154,7 +166,7 @@ const Contact = () => {
                     type="text"
                     value={form.name}
                     onChange={onChange}
-                    className="w-full rounded-xl bg-white/80 border border-slate-200 focus:border-accent-primary focus:ring-1 focus:ring-accent-primary outline-none pl-12 pr-4 py-3 text-slate-900 placeholder-slate-400 transition-all"
+                    className="w-full rounded-lg bg-white/80 border border-slate-200 focus:border-accent-primary focus:ring-1 focus:ring-accent-primary outline-none pl-12 pr-4 py-3 text-slate-900 placeholder-slate-400 transition-all shadow-inner"
                     placeholder="Your Name"
                     required
                   />
@@ -168,7 +180,7 @@ const Contact = () => {
                     type="email"
                     value={form.email}
                     onChange={onChange}
-                    className="w-full rounded-xl bg-white/80 border border-slate-200 focus:border-accent-primary focus:ring-1 focus:ring-accent-primary outline-none pl-12 pr-4 py-3 text-slate-900 placeholder-slate-400 transition-all"
+                    className="w-full rounded-lg bg-white/80 border border-slate-200 focus:border-accent-primary focus:ring-1 focus:ring-accent-primary outline-none pl-12 pr-4 py-3 text-slate-900 placeholder-slate-400 transition-all shadow-inner"
                     placeholder="Email Address"
                     required
                   />
@@ -181,11 +193,11 @@ const Contact = () => {
                   id="phone"
                   name="phone"
                   type="tel"
-                  value={form.phone}
-                  onChange={onChange}
-                  className="w-full rounded-xl bg-white/80 border border-slate-200 focus:border-accent-primary focus:ring-1 focus:ring-accent-primary outline-none pl-12 pr-4 py-3 text-slate-900 placeholder-slate-400 transition-all"
-                  placeholder="Phone Number (Optional)"
-                />
+                value={form.phone}
+                onChange={onChange}
+                className="w-full rounded-lg bg-white/80 border border-slate-200 focus:border-accent-primary focus:ring-1 focus:ring-accent-primary outline-none pl-12 pr-4 py-3 text-slate-900 placeholder-slate-400 transition-all shadow-inner"
+                placeholder="Phone Number (Optional)"
+              />
               </div>
 
               <div className="relative group">
@@ -196,7 +208,7 @@ const Contact = () => {
                   rows="4"
                   value={form.message}
                   onChange={onChange}
-                  className="w-full rounded-xl bg-white/80 border border-slate-200 focus:border-accent-primary focus:ring-1 focus:ring-accent-primary outline-none pl-12 pr-4 py-3 text-slate-900 placeholder-slate-400 transition-all resize-none"
+                  className="w-full rounded-lg bg-white/80 border border-slate-200 focus:border-accent-primary focus:ring-1 focus:ring-accent-primary outline-none pl-12 pr-4 py-3 text-slate-900 placeholder-slate-400 transition-all resize-none shadow-inner"
                   placeholder="Tell me about your project..."
                   required
                 />
@@ -205,7 +217,7 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={status.loading}
-                className="w-full rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 disabled:opacity-60 disabled:cursor-not-allowed transition-all px-6 py-4 font-bold text-white shadow-lg shadow-cyan-500/20 text-lg"
+                className="glow-button w-full rounded-lg bg-gradient-to-r from-cyan-500 via-blue-500 to-violet-600 hover:from-cyan-400 hover:to-blue-500 disabled:opacity-60 disabled:cursor-not-allowed transition-all px-6 py-4 font-bold text-white shadow-lg shadow-cyan-500/20 text-lg"
               >
                 {status.loading ? "Sending..." : "Send Message"}
               </button>
@@ -213,7 +225,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
