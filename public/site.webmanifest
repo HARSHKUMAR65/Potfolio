@@ -1,0 +1,11 @@
+{
+  "name": "Harsh Kumar — Senior Full Stack Developer",
+  "short_name": "Harsh Kumar",
+  "description": "Senior Full Stack Developer and Technical Lead specializing in Next.js, React, Node.js, SaaS, AWS, and automation.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#060713",
+  "theme_color": "#060713",
+  "lang": "en-IN",
+  "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}

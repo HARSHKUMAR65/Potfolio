@@ -1,0 +1,10 @@
+/* TEAM */
+Developer: Harsh Kumar
+Role: Senior Full Stack Developer and Technical Lead
+Location: Gurugram, Haryana, India
+Website: https://responsive-3d-redesign.anesh11.chatgpt.site
+GitHub: https://github.com/HARSHKUMAR65
+LinkedIn: https://www.linkedin.com/in/harsh-kumar-1849b61b8/
+
+/* TECHNOLOGY */
+Next.js, React, TypeScript, WebGL, Node.js, PostgreSQL, Redis, AWS

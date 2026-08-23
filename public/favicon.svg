@@ -1,28 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Harsh Kumar portfolio logo">
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="HK">
   <defs>
-    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#06b6d4"/>
-      <stop offset="100%" stop-color="#3b82f6"/>
-    </linearGradient>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#132344"/><stop offset="1" stop-color="#080a16"/></linearGradient>
+    <linearGradient id="letters" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#74f4ff"/><stop offset="1" stop-color="#a993ff"/></linearGradient>
   </defs>
-
-  <!-- Outer soft background -->
-  <rect width="64" height="64" rx="16" fill="#eef5ff"/>
-
-  <!-- Inner gradient card -->
-  <rect x="8" y="8" width="48" height="48" rx="12" fill="url(#g)"/>
-
-  <!-- HK Lettermark -->
-  <text
-    x="32"
-    y="38"
-    text-anchor="middle"
-    font-size="22"
-    font-weight="800"
-    font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif"
-    fill="#0f172a"
-    letter-spacing="2"
-  >
-    HK
-  </text>
+  <rect x="2" y="2" width="60" height="60" rx="17" fill="url(#background)" stroke="#49e9f5" stroke-opacity=".42" stroke-width="2"/>
+  <path d="M16 20v24m0-12h12m0-12v24m10-24v24m0-12 12-12m-12 12 13 12" fill="none" stroke="url(#letters)" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
 </svg>
