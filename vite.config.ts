@@ -1,8 +1,47 @@
+import { access, cp, mkdir, rm } from "node:fs/promises";
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import vinext from "vinext";
-import { defineConfig } from "vite";
-import { sites } from "./build/sites-vite-plugin";
+import { defineConfig, type Plugin } from "vite";
+
+function sitesPlugin(): Plugin {
+  let root = process.cwd();
+
+  const fileExists = async (candidate: string): Promise<boolean> => {
+    try {
+      await access(candidate);
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
+  return {
+    name: "sites",
+    apply: "build",
+    configResolved(config) {
+      root = config.root;
+    },
+    async closeBundle() {
+      const outputDirectory = path.resolve(root, "dist", ".openai");
+      const hostingConfig = path.resolve(root, ".openai", "hosting.json");
+      const drizzleSource = path.resolve(root, "drizzle");
+
+      await rm(outputDirectory, { recursive: true, force: true });
+      await mkdir(outputDirectory, { recursive: true });
+
+      if (await fileExists(hostingConfig)) {
+        await cp(hostingConfig, path.resolve(outputDirectory, "hosting.json"));
+      }
+
+      if (await fileExists(drizzleSource)) {
+        await cp(drizzleSource, path.resolve(outputDirectory, "drizzle"), {
+          recursive: true,
+        });
+      }
+    },
+  };
+}
 
 const SITE_CREATOR_PLACEHOLDER_DATABASE_ID =
   "00000000-0000-4000-8000-000000000000";
@@ -62,7 +101,7 @@ export default defineConfig(async () => {
     },
     plugins: [
       vinext(),
-      sites(),
+      sitesPlugin(),
       cloudflare({
         viteEnvironment: { name: "rsc", childEnvironments: ["ssr"] },
         inspectorPort: false,
