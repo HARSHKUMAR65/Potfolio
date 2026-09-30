@@ -1,6 +1,5 @@
-"use client";
-
-import { useEffect, useRef, useState, type PointerEvent, type ReactNode } from "react";
+import type { ReactNode } from "react";
+import SiteHeader from "./components/site-header";
 import ContactForm from "./components/contact-form";
 import { faqItems, profile, siteUrl } from "./site-config";
 
@@ -54,7 +53,7 @@ const homepageStructuredData = {
       url: siteUrl,
       name: "Harsh Kumar — Senior Full Stack Developer and Technical Lead",
       dateCreated: "2026-08-23",
-      dateModified: "2026-08-23",
+      dateModified: "2026-09-29",
       mainEntity: { "@id": `${siteUrl}/#person` },
       isPartOf: { "@id": `${siteUrl}/#website` },
     },
@@ -70,336 +69,35 @@ function Arrow({ diagonal = false }: { diagonal?: boolean }) {
   return <svg viewBox="0 0 24 24" aria-hidden="true"><path d={diagonal ? "M7 17 17 7M8 7h9v9" : "M5 12h14M13 6l6 6-6 6"} /></svg>;
 }
 
-const vertexShaderSource = `
-attribute vec2 position;
-void main() {
-  gl_Position = vec4(position, 0.0, 1.0);
-}`;
-
-const fragmentShaderSource = `
-precision highp float;
-
-uniform vec2 resolution;
-uniform vec2 pointer;
-uniform float time;
-uniform float scroll;
-
-mat2 rotation(float angle) {
-  float sine = sin(angle);
-  float cosine = cos(angle);
-  return mat2(cosine, -sine, sine, cosine);
-}
-
-float torus(vec3 point, vec2 size) {
-  vec2 ring = vec2(length(point.xz) - size.x, point.y);
-  return length(ring) - size.y;
-}
-
-float capsule(vec3 point, vec3 a, vec3 b, float radius) {
-  vec3 delta = point - a;
-  vec3 axis = b - a;
-  float projection = clamp(dot(delta, axis) / dot(axis, axis), 0.0, 1.0);
-  return length(delta - axis * projection) - radius;
-}
-
-float scene(vec3 point) {
-  point.xz *= rotation(time * 0.24 + scroll * 1.35 + pointer.x * 0.34);
-  point.xy *= rotation(0.35 + scroll * 0.53 + pointer.y * 0.23);
-
-  vec3 ringA = point;
-  ringA.yz *= rotation(0.62 + sin(time * 0.37) * 0.13);
-  float outerRing = torus(ringA, vec2(1.31, 0.11));
-
-  vec3 ringB = point;
-  ringB.xy *= rotation(1.57);
-  ringB.yz *= rotation(time * 0.18 + scroll * 0.72);
-  float middleRing = torus(ringB, vec2(1.04, 0.078));
-
-  vec3 ringC = point;
-  ringC.xz *= rotation(0.7);
-  ringC.xy *= rotation(time * -0.35);
-  float innerRing = torus(ringC, vec2(0.76, 0.055));
-
-  float core = length(point) - (0.39 + sin(time * 0.9) * 0.025);
-  vec3 satellitePoint = point - vec3(cos(time * 0.73) * 1.3, sin(time * 0.73) * 0.2, sin(time * 0.73) * 1.3);
-  float satellite = length(satellitePoint) - 0.11;
-  float axis = capsule(point, vec3(-1.64, 0.0, 0.0), vec3(1.64, 0.0, 0.0), 0.012);
-
-  return min(min(min(outerRing, middleRing), min(innerRing, core)), min(satellite, axis));
-}
-
-vec3 surfaceNormal(vec3 point) {
-  vec2 offset = vec2(0.002, 0.0);
-  return normalize(vec3(
-    scene(point + offset.xyy) - scene(point - offset.xyy),
-    scene(point + offset.yxy) - scene(point - offset.yxy),
-    scene(point + offset.yyx) - scene(point - offset.yyx)
-  ));
-}
-
-float random(vec2 point) {
-  return fract(sin(dot(point, vec2(127.1, 311.7))) * 43758.5453123);
-}
-
-void main() {
-  vec2 uv = (gl_FragCoord.xy - 0.5 * resolution.xy) / resolution.y;
-  float screenRatio = resolution.x / resolution.y;
-  float mobile = step(screenRatio, 0.85);
-  uv.x -= mix(0.17, 0.0, mobile) * (1.0 - min(scroll * 0.55, 1.0));
-  uv.y += mix(0.0, 0.08, mobile);
-
-  vec3 origin = vec3(0.0, 0.0, 5.4 + sin(scroll * 0.32) * 0.42);
-  vec3 ray = normalize(vec3(uv * mix(2.35, 2.85, mobile), -2.55));
-  ray.xz *= rotation(pointer.x * 0.055);
-  ray.yz *= rotation(pointer.y * 0.04);
-
-  vec3 color = vec3(0.010, 0.011, 0.024);
-  float distanceTravelled = 0.0;
-  float glow = 0.0;
-  bool hit = false;
-
-  for (int index = 0; index < 76; index++) {
-    vec3 point = origin + ray * distanceTravelled;
-    float distanceToScene = scene(point);
-    glow += 0.0045 / (0.04 + abs(distanceToScene) * 11.0);
-
-    if (distanceToScene < 0.0017) {
-      vec3 normal = surfaceNormal(point);
-      vec3 keyLight = normalize(vec3(-2.0, 2.8, 3.0));
-      vec3 fillLight = normalize(vec3(2.8, -1.4, 2.0));
-      float key = max(dot(normal, keyLight), 0.0);
-      float fill = max(dot(normal, fillLight), 0.0);
-      float rim = pow(1.0 - max(dot(normal, -ray), 0.0), 2.2);
-      vec3 cyan = vec3(0.11, 0.92, 1.0);
-      vec3 violet = vec3(0.54, 0.22, 1.0);
-      vec3 silver = vec3(0.8, 0.88, 1.0);
-      color += cyan * key * 0.7 + violet * fill * 0.52 + silver * rim * 0.75;
-      color += cyan * 0.11 + violet * 0.06;
-      hit = true;
-      break;
-    }
-
-    distanceTravelled += distanceToScene * 0.68;
-    if (distanceTravelled > 10.0) break;
-  }
-
-  color += vec3(0.06, 0.53, 0.85) * glow * 0.56;
-  color += vec3(0.37, 0.12, 0.72) * glow * 0.35;
-
-  float grain = random(gl_FragCoord.xy + time * 3.0) * 0.028;
-  color += grain * vec3(0.4, 0.44, 0.58);
-  color *= 1.0 - smoothstep(0.38, 1.2, length(uv)) * 0.54;
-  if (!hit) color += vec3(0.007, 0.011, 0.022);
-
-  gl_FragColor = vec4(pow(color, vec3(0.9)), 1.0);
-}`;
-
-function WebGLScene() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const gl = canvas.getContext("webgl", { alpha: false, antialias: false, powerPreference: "high-performance" });
-    if (!gl) return;
-
-    const compile = (type: number, source: string) => {
-      const shader = gl.createShader(type);
-      if (!shader) return null;
-      gl.shaderSource(shader, source);
-      gl.compileShader(shader);
-      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-        gl.deleteShader(shader);
-        return null;
-      }
-      return shader;
-    };
-
-    const vertex = compile(gl.VERTEX_SHADER, vertexShaderSource);
-    const fragment = compile(gl.FRAGMENT_SHADER, fragmentShaderSource);
-    const program = gl.createProgram();
-    if (!vertex || !fragment || !program) return;
-
-    gl.attachShader(program, vertex);
-    gl.attachShader(program, fragment);
-    gl.linkProgram(program);
-    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) return;
-    gl.useProgram(program);
-
-    const buffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]), gl.STATIC_DRAW);
-    const position = gl.getAttribLocation(program, "position");
-    gl.enableVertexAttribArray(position);
-    gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
-
-    const resolution = gl.getUniformLocation(program, "resolution");
-    const pointer = gl.getUniformLocation(program, "pointer");
-    const time = gl.getUniformLocation(program, "time");
-    const scroll = gl.getUniformLocation(program, "scroll");
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    let frame = 0;
-    let pointerX = 0;
-    let pointerY = 0;
-    let currentPointerX = 0;
-    let currentPointerY = 0;
-    let currentScroll = 0;
-
-    const resize = () => {
-      const ratio = Math.min(window.devicePixelRatio || 1, window.innerWidth < 760 ? 1 : 1.4);
-      canvas.width = Math.round(window.innerWidth * ratio);
-      canvas.height = Math.round(window.innerHeight * ratio);
-      gl.viewport(0, 0, canvas.width, canvas.height);
-      gl.uniform2f(resolution, canvas.width, canvas.height);
-    };
-
-    const onPointerMove = (event: globalThis.PointerEvent) => {
-      pointerX = (event.clientX / window.innerWidth - 0.5) * 2;
-      pointerY = (event.clientY / window.innerHeight - 0.5) * 2;
-    };
-
-    const draw = (now: number) => {
-      currentPointerX += (pointerX - currentPointerX) * 0.045;
-      currentPointerY += (pointerY - currentPointerY) * 0.045;
-      currentScroll += (window.scrollY / Math.max(window.innerHeight, 1) - currentScroll) * 0.065;
-      gl.uniform2f(pointer, currentPointerX, currentPointerY);
-      gl.uniform1f(time, reduceMotion.matches ? 0 : now * 0.001);
-      gl.uniform1f(scroll, currentScroll);
-      gl.drawArrays(gl.TRIANGLES, 0, 6);
-      frame = window.requestAnimationFrame(draw);
-    };
-
-    resize();
-    frame = window.requestAnimationFrame(draw);
-    window.addEventListener("resize", resize);
-    window.addEventListener("pointermove", onPointerMove, { passive: true });
-
-    return () => {
-      window.cancelAnimationFrame(frame);
-      window.removeEventListener("resize", resize);
-      window.removeEventListener("pointermove", onPointerMove);
-      gl.deleteBuffer(buffer);
-      gl.deleteProgram(program);
-      gl.deleteShader(vertex);
-      gl.deleteShader(fragment);
-    };
-  }, []);
-
-  return <canvas ref={canvasRef} className="webgl-scene" aria-label="Interactive three-dimensional animated scene" role="img" />;
-}
-
 function TiltCard({ children, className = "" }: { children: ReactNode; className?: string }) {
-  const cardRef = useRef<HTMLDivElement>(null);
-
-  const onPointerMove = (event: PointerEvent<HTMLDivElement>) => {
-    if (event.pointerType === "touch" || !cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = (event.clientX - rect.left) / rect.width;
-    const y = (event.clientY - rect.top) / rect.height;
-    cardRef.current.style.setProperty("--tilt-x", `${(0.5 - y) * 9}deg`);
-    cardRef.current.style.setProperty("--tilt-y", `${(x - 0.5) * 11}deg`);
-    cardRef.current.style.setProperty("--spot-x", `${x * 100}%`);
-    cardRef.current.style.setProperty("--spot-y", `${y * 100}%`);
-  };
-
-  const resetTilt = () => {
-    cardRef.current?.style.setProperty("--tilt-x", "0deg");
-    cardRef.current?.style.setProperty("--tilt-y", "0deg");
-  };
-
-  return <div ref={cardRef} className={`tilt-card ${className}`} onPointerMove={onPointerMove} onPointerLeave={resetTilt}>{children}</div>;
+  return <div className={`tilt-card ${className}`}>{children}</div>;
 }
 
 export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const root = document.documentElement;
-    let scrollFrame = 0;
-    let pointerFrame = 0;
-
-    const updateScroll = () => {
-      const scrollable = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
-      const progress = Math.min(window.scrollY / scrollable, 1);
-      const heroProgress = Math.min(window.scrollY / Math.max(window.innerHeight, 1), 1);
-      const manifesto = document.getElementById("manifesto");
-      const chapterDistance = manifesto ? Math.max(manifesto.offsetHeight - window.innerHeight, 1) : 1;
-      const chapterProgress = manifesto ? Math.max(0, Math.min((window.scrollY - manifesto.offsetTop) / chapterDistance, 1)) : 0;
-      root.style.setProperty("--page-progress", progress.toFixed(4));
-      root.style.setProperty("--hero-progress", heroProgress.toFixed(4));
-      root.style.setProperty("--scene-progress", chapterProgress.toFixed(4));
-      root.style.setProperty("--scroll-shift", `${Math.min(window.scrollY * 0.12, 120)}px`);
-      scrollFrame = 0;
-    };
-
-    const scheduleScroll = () => {
-      if (!scrollFrame) scrollFrame = window.requestAnimationFrame(updateScroll);
-    };
-
-    const updatePointer = (event: globalThis.PointerEvent) => {
-      if (event.pointerType === "touch" || pointerFrame) return;
-      pointerFrame = window.requestAnimationFrame(() => {
-        root.style.setProperty("--pointer-x", ((event.clientX / window.innerWidth - 0.5) * 2).toFixed(3));
-        root.style.setProperty("--pointer-y", ((event.clientY / window.innerHeight - 0.5) * 2).toFixed(3));
-        pointerFrame = 0;
-      });
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => { if (entry.isIntersecting) entry.target.classList.add("in-view"); });
-    }, { threshold: 0.14, rootMargin: "0px 0px -7% 0px" });
-
-    document.querySelectorAll<HTMLElement>("[data-reveal]").forEach((element, index) => {
-      element.style.setProperty("--reveal-order", String(index % 6));
-      observer.observe(element);
-    });
-
-    updateScroll();
-    window.addEventListener("scroll", scheduleScroll, { passive: true });
-    window.addEventListener("resize", scheduleScroll);
-    window.addEventListener("pointermove", updatePointer, { passive: true });
-
-    return () => {
-      observer.disconnect();
-      if (scrollFrame) window.cancelAnimationFrame(scrollFrame);
-      if (pointerFrame) window.cancelAnimationFrame(pointerFrame);
-      window.removeEventListener("scroll", scheduleScroll);
-      window.removeEventListener("resize", scheduleScroll);
-      window.removeEventListener("pointermove", updatePointer);
-    };
-  }, []);
-
-  const closeMenu = () => setMenuOpen(false);
-
   return (
     <div className="site-shell">
       <a className="skip-link" href="#main">Skip to content</a>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageStructuredData).replace(/</g, "\\u003c") }} />
       <div className="scroll-progress" aria-hidden="true"><span /></div>
-      <WebGLScene />
-      <div className="film-grain" aria-hidden="true" />
-      <div className="world-layer" aria-hidden="true"><div className="world-grid" /><div className="world-glow world-glow-one" /><div className="world-glow world-glow-two" /></div>
 
-      <header className="topbar">
-        <a className="brand" href="#top" onClick={closeMenu} aria-label="Harsh Kumar home">
-          <span className="brand-mark">HK</span><span className="brand-copy">Harsh Kumar<small>Full Stack Engineer</small></span>
-        </a>
-        <nav className={menuOpen ? "nav-links nav-open" : "nav-links"} aria-label="Primary navigation">
-          <a href="#expertise" onClick={closeMenu}>Expertise</a><a href="#work" onClick={closeMenu}>Selected work</a><a href="/services" onClick={closeMenu}>Services</a><a href="#experience" onClick={closeMenu}>Experience</a><a href="#stack" onClick={closeMenu}>Stack</a>
-        </nav>
-        <a className="nav-cta" href="#contact">Let&apos;s talk <Arrow /></a>
-        <button className="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded={menuOpen} onClick={() => setMenuOpen((open) => !open)}><span /><span /></button>
-      </header>
+
+      <SiteHeader />
 
       <main id="main">
         <section className="cinematic-hero" id="top">
           <div className="hero-coordinates"><span>28.4595° N</span><span>77.0266° E</span></div>
-          <div className="cinematic-copy" data-reveal>
-            <div className="eyebrow"><i /> Senior full stack engineer · technical lead</div>
-            <h1 aria-label="Harsh Kumar — Senior Full Stack Developer, Next.js Engineer and Technical Lead"><span>HARSH</span><span>KUMAR</span></h1>
-            <p>Senior full stack developer in Gurugram, India creating immersive digital products, scalable SaaS platforms, real-time systems, and intelligent automation. Available remotely worldwide.</p>
+          <div className="cinematic-copy">
+            <div className="eyebrow"><i /> Freelance full stack developer · India</div>
+            <h1 aria-label="Harsh Kumar — Senior Full Stack Developer, Next.js Engineer and Technical Lead">{["HARSH", "KUMAR"].map(word => <span className="hero-word" key={word}>{word.split("").map((letter, index) => <span className="hero-letter" key={index}>{letter}</span>)}</span>)}</h1>
+            <p>Senior full stack developer in Gurugram, India. I help businesses build Next.js websites, SaaS products and automation tools. Available for freelance projects and remote collaborations worldwide.</p>
             <div className="cinematic-actions"><a className="button button-primary" href="/#contact">Start a project <Arrow /></a><a className="button button-ghost" href="#work">Selected work <Arrow /></a></div>
+          </div>
+          <div className="hero-art" aria-hidden="true">
+            <div className="art-caption"><span>CREATIVE ENGINEERING</span><span>001 — HK</span></div>
+            <div className="orbital-machine"><div className="orbit-ring ring-a" /><div className="orbit-ring ring-b" /><div className="orbit-ring ring-c" /><div className="orbit-axis" /><div className="orbit-core"><span>&lt;/&gt;</span></div><span className="orbit-satellite" /></div>
+            <div className="floating-label label-top"><i /> AVAILABLE FOR FREELANCE</div>
+            <div className="floating-label label-bottom">BUILD. SHIP. SCALE. <span>↗</span></div>
+            <div className="art-footer"><span>IDEAS → REALITY</span><span>Full stack / Full potential</span></div>
           </div>
           <div className="hero-index"><span>AVAILABLE WORLDWIDE</span><span>EST. 2023</span></div>
           <a className="cinematic-scroll" href="#manifesto"><span>SCROLL TO EXPLORE</span><i /></a>
@@ -407,7 +105,15 @@ export default function Home() {
 
         <section className="manifesto-section" id="manifesto">
           <div className="manifesto-sticky">
-            <div className="manifesto-copy" data-reveal><p className="section-kicker">ENGINEERING × EXPERIENCE</p><h2>I don&apos;t just<br /><span>build websites.</span><br />I build <em>impact.</em></h2><p>From architecture to animation, every detail is designed to move the product—and the business—forward.</p></div>
+            <div className="manifesto-copy">
+              <p className="section-kicker">ENGINEERING × EXPERIENCE</p>
+              <div className="story-scenes">
+                <div className="story-scene"><span className="story-number" aria-hidden="true">01</span><h2>I don&apos;t just<br /><span>build websites.</span></h2><p>From architecture to animation, every detail is designed to move the product—and the business—forward.</p></div>
+                <div className="story-scene"><span className="story-number" aria-hidden="true">02</span><h2>I build<br /><em>strong systems.</em></h2><p>Scalable SaaS platforms, real-time systems, and intelligent automation. Built for what comes next.</p></div>
+                <div className="story-scene"><span className="story-number" aria-hidden="true">03</span><h2>I build<br /><em>impact.</em></h2><p>Product thinking, engineering depth, and delivery leadership. Ambitious ideas, brought into production.</p></div>
+              </div>
+              <div className="story-track" aria-hidden="true"><span /></div>
+            </div>
             <div className="manifesto-metrics"><div><strong>10+</strong><span>PRODUCT MODULES</span></div><div><strong>99.9%</strong><span>JOB RELIABILITY</span></div><div><strong>45%</strong><span>FASTER EXPERIENCE</span></div></div>
           </div>
         </section>
@@ -424,18 +130,29 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="section-wrap freelance-banner" id="freelance">
+          <div className="freelance-copy"><p className="section-kicker">AVAILABLE FOR FREELANCE / REMOTE WORLDWIDE</p><h2>Your idea.<br /><em>My next build.</em></h2><p>Work directly with a freelance full stack developer on your website, SaaS MVP, backend, or automation project.</p><a className="button button-primary" href="/freelance-developer">Explore freelance services</a></div>
+          <div className="engagement-list">{[["01", "Launch a product", "Next.js websites, SaaS MVPs and custom web apps."], ["02", "Improve what exists", "Faster APIs, new features and dependable integrations."], ["03", "Keep moving forward", "Ongoing development and technical collaboration."]].map(([n,title,text])=><article key={n}><span>{n}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
+        </section>
+
         <section className="section-wrap content-section projects-section" id="work">
           <div className="section-heading split-heading" data-reveal>
             <div><p className="section-kicker">02 / SELECTED WORK</p><h2>Built to solve.<br /><em>Designed to scale.</em></h2></div>
             <p>Two focused products combining dependable architecture with simple, useful user experiences.</p>
           </div>
-          <div className="project-list">
+          <div className="project-list" aria-label="Selected projects">
             {projects.map((project) => <TiltCard className="project-card" key={project.name}><article data-reveal>
               <div className="project-head"><span className="project-index">{project.index}</span><span className="project-signal"><i /> {project.signal}</span></div>
+              <div className={`project-visual visual-${project.index}`} aria-label={`${project.name} interface concept`}>
+                <span className="concept-label">INTERFACE CONCEPT / {project.index}</span>
+                <div className="browser-concept"><div className="concept-top"><span>● ● ●</span><span>{project.name.toLowerCase()}</span><span>↗</span></div>
+                  {project.index === "01" ? <div className="trend-concept"><small>YOUR NEXT BIG IDEA</small><h4>Find the signal.<br />Build what&apos;s next.</h4><div className="concept-chart">{[25,45,35,62,48,72,65,90].map((v,i)=><i key={i} style={{height:`${v}%`}} />)}</div><div className="concept-tags"><span>AI signals</span><span>SaaS opportunities ↗</span></div></div> : <div className="tools-concept"><small>LESS GUESSWORK. MORE CLARITY.</small><h4>Everyday tools.<br />Clearer decisions.</h4><div className="concept-search">Find your next tool <span>⌕</span></div><div className="concept-tools"><span>↗<b>Finance</b></span><span>✳<b>Career</b></span><span>⌘<b>Technology</b></span></div></div>}
+                </div>
+              </div>
               <div className="project-body">
                 <div className="project-main"><p>{project.type}</p><h3>{project.name}</h3><div className="tag-row stack-tags">{project.stack.map((item) => <span key={item}>{item}</span>)}</div></div>
                 <p className="project-description">{project.description}</p><ul>{project.outcomes.map((outcome) => <li key={outcome}><span>↗</span>{outcome}</li>)}</ul>
-              </div><div className="project-plane" aria-hidden="true"><span /><span /><span /></div>
+              </div>
             </article></TiltCard>)}
           </div>
         </section>
@@ -444,7 +161,7 @@ export default function Home() {
           <div className="experience-intro" data-reveal>
             <p className="section-kicker">03 / EXPERIENCE</p><h2>Leading from<br /><em>idea to impact.</em></h2>
             <p>Hands-on engineering leadership with ownership across product architecture, team delivery, and global client relationships.</p>
-            <div className="availability-card"><i /><span>Open to senior engineering<br />and technical lead roles</span></div>
+            <div className="availability-card"><i /><span>Freelance projects, senior engineering<br />and technical lead roles</span></div>
           </div>
           <div className="timeline" data-reveal>
             <div className="timeline-rail"><i /></div>
@@ -479,7 +196,7 @@ export default function Home() {
             <div className="contact-orbit" aria-hidden="true"><i /><i /><i /></div>
             <div className="contact-content">
               <p className="section-kicker">06 / LET&apos;S BUILD</p><h2>Have a complex idea?<br /><em>Let&apos;s make it clear.</em></h2>
-              <p>Open to Senior Full Stack Engineer, Technical Lead, Product Engineer, and remote full-stack opportunities.</p>
+              <p>Available for freelance development, ongoing product support, and remote Senior Full Stack Engineer or Technical Lead opportunities.</p>
               <div className="contact-actions"><a className="button button-primary" href="mailto:harshkumar672001@gmail.com">Email me <Arrow /></a><a className="button button-ghost" href="https://wa.me/918800288159" target="_blank" rel="noreferrer">WhatsApp <Arrow diagonal /></a></div>
               <a className="contact-email" href={`mailto:${profile.email}`}>{profile.email}</a>
             </div>
@@ -488,10 +205,11 @@ export default function Home() {
         </section>
       </main>
 
+      <div className="footer-wordmark" aria-hidden="true"><span>LET’S BUILD</span><i>↗</i></div>
       <footer className="footer section-wrap">
         <div><span className="brand-mark">HK</span><p>Senior Full Stack Engineer<br />Technical Lead</p></div><p>Gurgaon, Haryana, India · Open to remote</p>
         <div className="social-links"><a href="https://github.com/HARSHKUMAR65" target="_blank" rel="noreferrer">GitHub <Arrow diagonal /></a><a href="https://www.linkedin.com/in/harsh-kumar-1849b61b8/" target="_blank" rel="noreferrer">LinkedIn <Arrow diagonal /></a></div>
-        <nav className="footer-page-links" aria-label="Portfolio pages"><a href="/about">About</a><a href="/services">Services</a><a href="/projects">Projects</a><a href="/contact">Contact</a><a href="/sitemap.xml">Sitemap</a></nav>
+        <nav className="footer-page-links" aria-label="Portfolio pages"><a href="/about">About</a><a href="/services">Services</a><a href="/freelance-developer">Freelance</a><a href="/projects">Projects</a><a href="/contact">Contact</a><a href="/sitemap.xml">Sitemap</a></nav>
       </footer>
       <a className="quick-contact" href="mailto:harshkumar672001@gmail.com" aria-label="Email Harsh Kumar"><span /><b>Let&apos;s talk</b></a>
     </div>

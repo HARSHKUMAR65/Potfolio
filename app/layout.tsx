@@ -1,15 +1,16 @@
+import MotionDirector from "./components/motion-director";
 import type { Metadata, Viewport } from "next";
 import { profile, seoKeywords, siteUrl } from "./site-config";
 import "./globals.css";
 
-const pageTitle = "Harsh Kumar | Senior Full Stack Developer, Next.js & React Engineer";
-const pageDescription = "Hire Harsh Kumar, a Senior Full Stack Developer and Technical Lead in Gurugram, India. Expert in Next.js, React, Node.js, SaaS platforms, AWS, real-time systems, and AI automation. Available remotely worldwide.";
+const pageTitle = "Harsh Kumar | Freelance Full Stack Developer in India";
+const pageDescription = "Hire Harsh Kumar, a freelance full stack developer in Gurugram, India, for Next.js websites, SaaS products, Node.js APIs and automation. Remote worldwide.";
 const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   applicationName: "Harsh Kumar | Full Stack Developer",
-  title: { default: pageTitle, template: "%s | Harsh Kumar" },
+  title: { default: pageTitle, template: "%s" },
   description: pageDescription,
   keywords: seoKeywords,
   authors: [{ name: profile.name, url: siteUrl }],
@@ -51,8 +52,8 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#060713",
-  colorScheme: "dark",
+  themeColor: "#f7f6f2",
+  colorScheme: "light",
 };
 
 const structuredData = {
@@ -94,6 +95,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />
         {children}
+        <MotionDirector />
       </body>
     </html>
   );

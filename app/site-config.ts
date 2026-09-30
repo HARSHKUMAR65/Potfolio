@@ -1,4 +1,4 @@
-const fallbackSiteUrl = "https://responsive-3d-redesign.anesh11.chatgpt.site";
+const fallbackSiteUrl = "https://harsh-portfolio-motion.anesh11.chatgpt.site";
 
 export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || fallbackSiteUrl).replace(/\/$/, "");
 
@@ -14,7 +14,7 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/harsh-kumar-1849b61b8/",
   employer: "Brandeducer Digital Solutions",
   description:
-    "Harsh Kumar is a Senior Full Stack Developer and Technical Lead based in Gurugram, India, specializing in Next.js, React, Node.js, SaaS development, real-time systems, AWS, PostgreSQL, Redis, BullMQ, and Python automation.",
+    "Harsh Kumar is a Senior Full Stack Developer and Technical Lead based in Gurugram, India, available for freelance projects and remote collaboration, specializing in Next.js, React, Node.js, SaaS development, real-time systems, AWS, PostgreSQL, Redis, BullMQ, and Python automation.",
   skills: [
     "Next.js", "React", "React Native", "TypeScript", "JavaScript", "Node.js", "Express.js", "Python",
     "PostgreSQL", "MongoDB", "Prisma", "Redis", "BullMQ", "Socket.IO", "WebSockets", "AWS",
@@ -46,6 +46,7 @@ export const seoKeywords = [
 ];
 
 export const faqItems = [
+  { question: "Can I hire Harsh Kumar for a freelance project?", answer: "Yes. Harsh is available for freelance full stack development, Next.js and React websites, SaaS MVPs, Node.js APIs, and Python automation. Based in Gurugram, India, he works remotely with clients worldwide. Share your scope, timeline, and existing codebase to discuss a suitable engagement." },
   {
     question: "Who is Harsh Kumar?",
     answer:
@@ -79,6 +80,7 @@ export const faqItems = [
 ];
 
 export const indexedPages = [
+  { path: "/freelance-developer", title: "Freelance Full Stack Developer in India — Harsh Kumar", priority: "0.9", frequency: "monthly" },
   { path: "/", title: "Harsh Kumar — Senior Full Stack Developer", priority: "1.0", frequency: "weekly" },
   { path: "/about", title: "About Harsh Kumar — Full Stack Developer in Gurugram", priority: "0.9", frequency: "monthly" },
   { path: "/services", title: "Hire a Full Stack, Next.js and SaaS Developer", priority: "0.9", frequency: "monthly" },

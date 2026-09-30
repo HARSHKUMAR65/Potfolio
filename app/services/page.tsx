@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import ProfilePageShell from "../components/profile-page-shell";
 import { siteUrl } from "../site-config";
 
-const title = "Hire a Senior Full Stack, Next.js & SaaS Developer";
+const title = "Freelance Web & SaaS Development Services | Harsh Kumar";
 const description = "Hire Harsh Kumar for Next.js and React development, SaaS architecture, Node.js APIs, real-time applications, Python automation, AWS deployment, and technical leadership.";
 
 export const metadata: Metadata = { title, description, alternates: { canonical: `${siteUrl}/services` }, openGraph: { title, description, url: `${siteUrl}/services`, type: "website", images: ["/og.png"] }, twitter: { card: "summary_large_image", title, description, images: ["/og.png"] } };
@@ -19,10 +19,11 @@ const services = [
 const serviceSchema = { "@context": "https://schema.org", "@graph": services.map((service) => ({ "@type": "Service", "@id": `${siteUrl}/services#service-${service.number}`, name: service.title, description: service.text, provider: { "@id": `${siteUrl}/#person` }, areaServed: "Worldwide", serviceType: service.title })) };
 
 export default function ServicesPage() {
-  return <ProfilePageShell eyebrow="SERVICES / FULL STACK DEVELOPMENT" title="Engineering services for products that need to perform." description={description}>
+  return <ProfilePageShell eyebrow="SERVICES / FULL STACK DEVELOPMENT" title="Freelance development for products that need to perform." description={description}>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema).replace(/</g, "\\u003c") }} />
     <div className="services-directory">{services.map((service) => <article className="service-directory-card" key={service.number}><span>{service.number} /</span><h2>{service.title}</h2><p>{service.text}</p><small>{service.stack}</small></article>)}</div>
     <section className="profile-detail-section"><h2>How we can work together</h2><div className="profile-columns"><article><h3>Product development</h3><p>Build a new SaaS application, customer platform, internal tool, or high-performance web experience from the ground up.</p></article><article><h3>Engineering leadership</h3><p>Strengthen delivery with architecture planning, code reviews, technical mentoring, sprint ownership, and client communication.</p></article><article><h3>System modernization</h3><p>Improve slow APIs, upgrade legacy frontend experiences, introduce real-time features, or automate operational workflows.</p></article></div></section>
-    <div className="profile-page-cta"><h2>Need a remote full stack developer?</h2><p>Available for senior developer, product engineer, and technical lead opportunities.</p><a className="button button-primary" href="/contact">Discuss your project ↗</a></div>
+    <p className="service-freelance-link">Looking for project-based collaboration? <a href="/freelance-developer">Explore freelance development and the project process.</a></p>
+    <div className="profile-page-cta"><h2>Need a remote full stack developer?</h2><p>Available for freelance projects, ongoing product development, and technical leadership.</p><a className="button button-primary" href="/contact">Discuss your project ↗</a></div>
   </ProfilePageShell>;
 }

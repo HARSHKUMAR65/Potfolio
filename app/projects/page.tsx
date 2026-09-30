@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import ProfilePageShell from "../components/profile-page-shell";
 import { siteUrl } from "../site-config";
 
-const title = "Full Stack SaaS Projects & Engineering Case Studies";
+const title = "SaaS & Web Development Projects | Harsh Kumar";
 const description = "Explore Harsh Kumar's full stack development projects: AI-powered SaaS trend analysis, smart calculator platforms, enterprise CRM, real-time systems, and Python automation.";
 
 export const metadata: Metadata = { title, description, alternates: { canonical: `${siteUrl}/projects` }, openGraph: { title, description, url: `${siteUrl}/projects`, type: "website", images: ["/og.png"] }, twitter: { card: "summary_large_image", title, description, images: ["/og.png"] } };
