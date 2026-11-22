@@ -1,0 +1,6 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "portfolio-prod", "runtimeExecutable": "npx", "runtimeArgs": ["vinext", "start", "-p", "3124"], "port": 3124 }
+  ]
+}

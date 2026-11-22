@@ -1,11 +1,15 @@
 {
-  "name": "Harsh Kumar — Senior Full Stack Developer",
+  "name": "Harsh Kumar | Full Stack Developer",
   "short_name": "Harsh Kumar",
-  "description": "Senior Full Stack Developer and Technical Lead specializing in Next.js, React, Node.js, SaaS, AWS, and automation.",
+  "description": "Full Stack Developer in Gurugram, India: React, Next.js, React Native, Node.js, Python, PostgreSQL, real-time systems and AWS.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f7f6f2",
-  "theme_color": "#f7f6f2",
+  "background_color": "#f4f1ea",
+  "theme_color": "#f4f1ea",
   "lang": "en-IN",
-  "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
 }

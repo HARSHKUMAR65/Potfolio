@@ -1,16 +1,40 @@
 import type { Metadata } from "next";
-import ProfilePageShell from "../components/profile-page-shell";
-import { siteUrl } from "../site-config";
+import ProfilePageShell, { PageCta } from "../components/profile-page-shell";
+import { ProjectGrid } from "../components/sections";
+import { projects, siteUrl } from "../site-config";
 
-const title = "SaaS & Web Development Projects | Harsh Kumar";
-const description = "Explore Harsh Kumar's full stack development projects: AI-powered SaaS trend analysis, smart calculator platforms, enterprise CRM, real-time systems, and Python automation.";
+const title = "Work by Domain: iGaming, E-commerce, AI & SaaS | Harsh Kumar";
+const description = "The kinds of products Harsh Kumar has built: iGaming and casino platforms, e-commerce, marketplaces, AI assistance, multi-tenant SaaS and CRM, FinTech payments, mobile apps and Web3.";
 
 export const metadata: Metadata = { title, description, alternates: { canonical: `${siteUrl}/projects` }, openGraph: { title, description, url: `${siteUrl}/projects`, type: "website", images: ["/og.png"] }, twitter: { card: "summary_large_image", title, description, images: ["/og.png"] } };
 
+const outcomes = [
+  { title: "Faster APIs", text: "Reduced average API response time by ~35% by optimizing PostgreSQL queries and Prisma data access." },
+  { title: "Reliable background jobs", text: "Reached 99.9% job reliability with Redis and BullMQ queues, retries and monitoring." },
+  { title: "Automation", text: "Automated ~90% of manual research with 15+ Python tools built on Selenium, Puppeteer and BeautifulSoup." },
+  { title: "Payments", text: "Stripe subscriptions and webhook-driven billing, plus Razorpay, PayPal and Paystack integrations." },
+  { title: "Real-time features", text: "Live chat, notifications and live updates with WebSockets, Socket.IO, SSE and Postgres LISTEN/NOTIFY." },
+  { title: "Multi-tenant SaaS", text: "Tenant-aware platforms for contractors and businesses, deployed on AWS, Docker and Vercel." },
+];
+
+const projectSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "@id": `${siteUrl}/projects#list`,
+  name: "Work by Harsh Kumar, by domain",
+  itemListElement: projects.map((project, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    item: { "@type": "CreativeWork", name: `${project.name} development`, description: project.result ? `${project.description} Result: ${project.result}.` : project.description, keywords: project.stack.join(", "), creator: { "@id": `${siteUrl}/#person` } },
+  })),
+};
+
 export default function ProjectsPage() {
-  return <ProfilePageShell eyebrow="PROJECTS / SELECTED ENGINEERING WORK" title="Real systems. Clear thinking. Measurable results." description={description}>
-    <div className="case-study-list"><article className="case-study"><p className="section-kicker">01 / AI-POWERED SAAS</p><h2>Trend2SaaS</h2><p className="case-intro">An AI-powered trend analysis platform that converts live market signals into structured SaaS opportunities with problem statements, customer profiles, monetization strategies, and why-now analysis.</p><div className="case-grid"><div><h3>The challenge</h3><p>Process unpredictable trend data asynchronously while delivering clear, useful business ideas and exportable reports without slowing down the product experience.</p></div><div><h3>The solution</h3><p>Built a Next.js and Python platform with Redis-backed BullMQ workflows, resilient asynchronous processing, structured output generation, and one-click PDF reporting.</p></div><div><h3>The outcome</h3><p>Achieved 99.9% background job reliability and established a scalable architecture for future AI-assisted workflows and real-time trend processing.</p></div></div><div className="case-stack">Next.js · Python · Redis · BullMQ · PDF generation · SaaS architecture</div></article><article className="case-study"><p className="section-kicker">02 / PUBLIC PRODUCT EXPERIENCE</p><h2>Claritools</h2><p className="case-intro">A practical calculator and guide platform helping users quickly discover useful tools across finance, career, and technology categories.</p><div className="case-grid"><div><h3>The challenge</h3><p>Make a broad library of practical tools discoverable across desktop and mobile without introducing clutter, slow navigation, or confusing information architecture.</p></div><div><h3>The solution</h3><p>Designed a search-first Next.js experience with keyboard-friendly navigation, responsive layouts, clear content grouping, accessibility, and SEO-conscious page structure.</p></div><div><h3>The outcome</h3><p>Users can discover relevant tools in fewer than three clicks, supported by a clean and maintainable production frontend.</p></div></div><div className="case-stack">Next.js · Responsive UI · Search UX · Accessibility · SEO</div></article></div>
-    <section className="profile-detail-section"><h2>Additional production outcomes</h2><div className="profile-columns"><article><h3>Enterprise CRM</h3><p>Reduced sales response time by 40% through real-time lead tracking, notifications, and operational dashboards.</p></article><article><h3>High-performance APIs</h3><p>Reduced average API response time by 35% by optimizing PostgreSQL queries and Prisma data access.</p></article><article><h3>Automation systems</h3><p>Automated 90% of manual research tasks through more than fifteen Python-based extraction and workflow tools.</p></article></div></section>
-    <div className="profile-page-cta"><h2>Want results like these?</h2><p>Let&apos;s talk about your application, architecture, or engineering team.</p><a className="button button-primary" href="/contact">Start a conversation ↗</a></div>
+  return <ProfilePageShell route="/projects" label="Projects" eyebrow="Projects" title="What I've built, by domain." description={description}>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(projectSchema).replace(/</g, "\\u003c") }} />
+    <p className="lead">Grouped by the kind of product rather than by project name.</p>
+    <div className="section-sm"><ProjectGrid /></div>
+    <section className="section-sm"><h2>Other production outcomes</h2><div className="grid-3">{outcomes.map((item) => <article className="card" key={item.title}><h3>{item.title}</h3><p>{item.text}</p></article>)}</div></section>
+    <PageCta title="Want results like these?" text="Let's talk about your application, architecture or team." label="Start a conversation" />
   </ProfilePageShell>;
 }

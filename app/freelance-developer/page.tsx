@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import ProfilePageShell from "../components/profile-page-shell";
+import ProfilePageShell, { PageCta } from "../components/profile-page-shell";
 import { siteUrl } from "../site-config";
 
 const title = "Freelance Full Stack Developer in India | Harsh Kumar";
@@ -28,12 +28,16 @@ const schema = { "@context": "https://schema.org", "@graph": [
 ] };
 
 export default function FreelancePage() {
-  return <ProfilePageShell eyebrow="FREELANCE / GURUGRAM, INDIA / REMOTE WORLDWIDE" title="Freelance full stack developer for your next idea." description={description}>
+  return <ProfilePageShell route="/freelance-developer" label="Freelance development" eyebrow="Freelance · Gurugram, India · Remote worldwide" title="Freelance full stack developer for your next idea." description={description}>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, "\\u003c") }} />
-    <section className="profile-story"><h2>Work directly with your developer.</h2><p>I&apos;m Harsh Kumar, a Senior Full Stack Developer and Technical Lead with more than three years of experience. I help businesses plan, build and improve web products using Next.js, React, Node.js and Python.</p><p>Whether you need a new website, a SaaS MVP or help with an existing system, we start with the business problem and agree on a practical scope. You work directly with me through development, review and handover.</p><p><a className="inline-link" href="/projects">See my development projects</a> or <a className="inline-link" href="/about">read about my engineering experience</a>.</p></section>
-    <section className="profile-detail-section"><h2>What I can build for you</h2><div className="services-directory">{offers.map(service=><article className="service-directory-card" key={service.number}><span>{service.number} /</span><h3>{service.title}</h3><p>{service.text}</p><small>{service.stack}</small></article>)}</div></section>
-    <section className="profile-detail-section"><h2>A clear process, from scope to handover.</h2><div className="profile-columns engagement-process"><article><span>01 / DISCOVER</span><h3>Define the work</h3><p>Discuss your users, goals and existing systems. Agree on priorities, deliverables and milestones before development begins.</p></article><article><span>02 / BUILD</span><h3>Review real progress</h3><p>Work through the agreed scope with regular reviews. Test the experience across relevant devices and address feedback along the way.</p></article><article><span>03 / LAUNCH</span><h3>Make the handover clear</h3><p>Prepare the release, source code and setup notes. Discuss any ongoing development or support you need after delivery.</p></article></div></section>
-    <section className="profile-detail-section"><h2>Freelance project questions</h2><div className="faq-list">{questions.map((item,index)=><details className="faq-item" key={item.question}><summary><span>0{index+1}</span><h3>{item.question}</h3><i>+</i></summary><p>{item.answer}</p></details>)}</div></section>
-    <div className="profile-page-cta"><h2>Tell me what you want to build.</h2><p>Share your idea, timeline and current setup. Let&apos;s discuss a freelance collaboration that fits the work.</p><a className="button button-primary" href="/contact">Discuss your freelance project</a></div>
+    <section className="prose"><h2>Work directly with your developer.</h2><p>I&apos;m Harsh Kumar, a Full Stack Engineer with 3.5 years of experience across SaaS, FinTech, iGaming, Web3 and AI-powered products. I help businesses plan, build and improve web and mobile products using Next.js, React, React Native, Node.js and Python.</p><p>Whether you need a new website, a SaaS MVP or help with an existing system, we start with the business problem and agree on a practical scope. You work directly with me through development, review and handover.</p><p><a className="link" href="/projects">See my projects</a> or <a className="link" href="/services">browse services</a>.</p></section>
+    <section className="section-sm"><h2>What I can build for you</h2><div className="grid-2">{offers.map(service=><article className="card" key={service.number}><p className="eyebrow">{service.number}</p><h3>{service.title}</h3><p>{service.text}</p><p className="muted small">{service.stack}</p></article>)}</div></section>
+    <section className="section-sm"><h2>A clear process, from scope to handover.</h2><div className="grid-3">
+      <article className="card"><p className="eyebrow">01 · Discover</p><h3>Define the work</h3><p>Discuss your users, goals and existing systems. Agree on priorities, deliverables and milestones before development begins.</p></article>
+      <article className="card"><p className="eyebrow">02 · Build</p><h3>Review real progress</h3><p>Work through the agreed scope with regular reviews, testing across devices and addressing feedback along the way.</p></article>
+      <article className="card"><p className="eyebrow">03 · Launch</p><h3>Ship and support</h3><p>Deploy to production, hand over documentation and access, and agree on ongoing support if you need it.</p></article>
+    </div></section>
+    <section className="section-sm"><h2>Freelance project questions</h2><div className="faq">{questions.map((item)=><details key={item.question}><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div></section>
+    <PageCta title="Tell me what you want to build." text="Share your idea, timeline and current setup." label="Discuss your freelance project" />
   </ProfilePageShell>;
 }

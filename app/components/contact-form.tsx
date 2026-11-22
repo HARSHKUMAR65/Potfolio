@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, type FormEvent } from "react";
+import { useState, useEffect, useRef, useSyncExternalStore, type FormEvent } from "react";
 import { createPortal } from "react-dom";
 import { profile } from "../site-config";
 
@@ -9,8 +9,8 @@ type ContactValues = { name: string; email: string; project: string; message: st
 const initialValues: ContactValues = { name: "", email: "", project: "", message: "" };
 
 export default function ContactForm({ compact = false }: { compact?: boolean }) {
-  const [ready, setReady] = useState(false);
-  useEffect(() => setReady(true), []);
+  // true only after hydration, so the submit button can't be used before handlers attach
+  const ready = useSyncExternalStore(() => () => {}, () => true, () => false);
   const [values, setValues] = useState<ContactValues>(initialValues);
   const [channel, setChannel] = useState<"whatsapp" | "email">("email");
   const [notice, setNotice] = useState("");
@@ -20,7 +20,7 @@ export default function ContactForm({ compact = false }: { compact?: boolean }) 
   const [showModal, setShowModal] = useState(false);
 
   const submittingRef = useRef(false);
-  submittingRef.current = isSubmitting;
+  useEffect(() => { submittingRef.current = isSubmitting; }, [isSubmitting]);
   const modalRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!showModal) return;
@@ -137,7 +137,7 @@ export default function ContactForm({ compact = false }: { compact?: boolean }) 
       openModal(
         "success",
         data.demo ? "Demo preview" : "Enquiry sent",
-        data.demo ? "Your form is valid. This preview has no email service connected, so no message was sent." : "Thanks — your enquiry has been sent successfully. Harsh will reply shortly.",
+        data.demo ? "Your form is valid. This preview has no email service connected, so no message was sent." : "Thanks - your enquiry has been sent successfully. Harsh will reply shortly.",
       );
     } catch (error) {
       if (error instanceof DOMException && error.name === "AbortError") {
@@ -166,8 +166,8 @@ export default function ContactForm({ compact = false }: { compact?: boolean }) 
         <label><span>Your name</span><input name="name" required autoComplete="name" placeholder="Your full name" value={values.name} onChange={(event) => { const value = event.target.value; setValues(previous => ({ ...previous, name: value })); }} /></label>
         <label><span>Email address</span><input name="email" required type="email" autoComplete="email" placeholder="you@company.com" value={values.email} onChange={(event) => { const value = event.target.value; setValues(previous => ({ ...previous, email: value })); }} /></label>
       </div>
-      <label><span>What do you need?</span><input name="project" placeholder="SaaS platform, Next.js website, technical lead…" value={values.project} onChange={(event) => { const value = event.target.value; setValues(previous => ({ ...previous, project: value })); }} /></label>
-      <label><span>Your message</span><textarea name="message" required rows={compact ? 4 : 5} placeholder="A few details about the opportunity, product, or challenge." value={values.message} onChange={(event) => { const value = event.target.value; setValues(previous => ({ ...previous, message: value })); }} /></label>
+      <label><span>What&apos;s it about?</span><input name="project" placeholder="A new app, help with an existing one, a full-time role…" value={values.project} onChange={(event) => { const value = event.target.value; setValues(previous => ({ ...previous, project: value })); }} /></label>
+      <label><span>Your message</span><textarea name="message" required rows={compact ? 4 : 5} placeholder="A bit about what you have in mind." value={values.message} onChange={(event) => { const value = event.target.value; setValues(previous => ({ ...previous, message: value })); }} /></label>
       <div className="contact-form-actions">
         <div className="channel-switch" role="group" aria-label="Preferred contact channel">
           <button type="button" className={channel === "whatsapp" ? "active" : ""} onClick={() => setChannel("whatsapp")}>WhatsApp</button>
@@ -180,7 +180,7 @@ export default function ContactForm({ compact = false }: { compact?: boolean }) 
               Sending...
             </>
           ) : (
-            "Send enquiry ↗"
+            "Send message"
           )}
         </button>
       </div>

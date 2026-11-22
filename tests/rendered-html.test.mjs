@@ -20,7 +20,8 @@ test("renders the crawlable professional portfolio", async () => {
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
   assert.match(html, /Harsh Kumar/);
-  assert.match(html, /Senior Full Stack Developer/);
+  assert.match(html, /Full Stack Developer/);
+  assert.match(html, /TruxWorks/);
   assert.match(html, /application\/ld\+json/);
   assert.doesNotMatch(html, /name=["']codex-preview["']/i);
   assert.doesNotMatch(response.headers.get("x-robots-tag") ?? "", /noindex/i);
@@ -59,6 +60,22 @@ test("publishes the sitemap and AI-readable professional profile", async () => {
   assert.equal(profileResponse.status, 200);
   assert.match(profile, /Harsh Kumar/);
   assert.match(profile, /Next\.js/);
+
+  const fullResponse = await request("/llms-full.txt", "text/plain");
+  const full = await fullResponse.text();
+  assert.equal(fullResponse.status, 200);
+  assert.match(full, /## Experience/);
+  assert.match(full, /TruxWorks/);
+  assert.match(full, /Brandeducer Digital Solutions/);
+});
+
+test("homepage exposes quick facts and FAQ for answer engines", async () => {
+  const html = await (await request("/")).text();
+  assert.match(html, /Quick facts/);
+  assert.match(html, /"@type":"FAQPage"/);
+  assert.match(html, /Questions people ask me/);
+  assert.match(html, /"@type":"Person"/);
+  assert.match(html, /hasCredential/);
 });
 
 // Validate the rendered response, not just source metadata declarations.

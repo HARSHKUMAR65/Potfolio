@@ -1,22 +1,16 @@
-# Harsh Kumar — Light Motion Portfolio
+# Harsh Kumar | Personal site
 
-A production-ready, responsive developer portfolio for Harsh Kumar, Senior Full
-Stack Developer and Technical Lead. The site combines a warm light theme, coordinated GSAP motion, and
-substantive, crawlable professional-profile pages.
+Personal portfolio for Harsh Kumar, Full Stack Developer (Gurugram, India).
+A simple, editorial-style site: paper background, Fraunces + IBM Plex type,
+no animation library, light and dark mode.
 
-## Included experience
+## Editing content
 
-- Letter-by-letter hero reveal, lightweight animated orbital artwork, and
-  scroll-driven transitions. No remote image dependency for the hero.
-- Responsive layouts, mobile navigation, accessible controls, and reduced-motion
-  support.
-- Complete developer profile, technical stack, experience, results, case studies,
-  service offerings, and availability.
-- Working WhatsApp and SMTP-backed email enquiry forms. Email enquiries are sent
-  via `POST /api/contact`.
-- Dedicated indexable pages at `/about`, `/services`, `/projects`, and `/contact`.
-- Professional social links, branded favicon, social-share image, and web-app
-  manifest.
+All resume content lives in `app/site-config.ts` (profile, experience,
+projects, skills, education, quick facts, FAQ, `lastUpdated`). Every page,
+the sitemap, `llms.txt`, `llms-full.txt` and the structured data read from it,
+so update that file (and bump `lastUpdated`) when the resume changes. The
+downloadable resume is `public/Harsh_Kumar_Resume.pdf`.
 
 ## Local development
 
@@ -50,12 +44,15 @@ Console asks for an HTML verification token.
 
 The following discovery endpoints are generated automatically:
 
-- `/robots.txt` permits Googlebot, Bingbot, OpenAI's `OAI-SearchBot`, and other
-  search crawlers. `GPTBot` is blocked independently from search indexing.
+- `/robots.txt` allows search engines and AI crawlers (Googlebot, Bingbot,
+  OAI-SearchBot, GPTBot, ClaudeBot, PerplexityBot, Applebot and others) so the
+  profile can be found and cited in AI answers. `/api/` is excluded.
 - `/sitemap.xml` lists all six profile and freelance pages.
-- `/llms.txt` provides a concise machine-readable professional profile.
-- JSON-LD includes `Person`, `ProfilePage`, `WebSite`, `FAQPage`, and `Service`
-  structured data where relevant.
+- `/llms.txt` provides a concise machine-readable profile, and `/llms-full.txt`
+  the complete resume in Markdown.
+- JSON-LD includes `Person` (with credentials and skills), `WebSite`,
+  `ProfilePage`, `FAQPage`, `Service`, `ItemList` (projects), `ContactPage` and
+  `BreadcrumbList` structured data where relevant.
 
 After the public domain is live, verify it in Google Search Console and submit
 `https://your-public-domain.com/sitemap.xml`. Search engines and AI search
